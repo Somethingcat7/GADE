@@ -1,0 +1,10 @@
+C:\Users\somet\AppData\Local\GitHubDesktop\app-2.9.3\GADE\Hein_Kroese_GADE6112_POE\Hein_Kroese_GADE6112_POE\bin\Debug\Hein_Kroese_GADE6112_POE.exe.config
+C:\Users\somet\AppData\Local\GitHubDesktop\app-2.9.3\GADE\Hein_Kroese_GADE6112_POE\Hein_Kroese_GADE6112_POE\bin\Debug\Hein_Kroese_GADE6112_POE.exe
+C:\Users\somet\AppData\Local\GitHubDesktop\app-2.9.3\GADE\Hein_Kroese_GADE6112_POE\Hein_Kroese_GADE6112_POE\bin\Debug\Hein_Kroese_GADE6112_POE.pdb
+C:\Users\somet\AppData\Local\GitHubDesktop\app-2.9.3\GADE\Hein_Kroese_GADE6112_POE\Hein_Kroese_GADE6112_POE\obj\Debug\Hein_Kroese_GADE6112_POE.csprojAssemblyReference.cache
+C:\Users\somet\AppData\Local\GitHubDesktop\app-2.9.3\GADE\Hein_Kroese_GADE6112_POE\Hein_Kroese_GADE6112_POE\obj\Debug\Hein_Kroese_GADE6112_POE.frmGame.resources
+C:\Users\somet\AppData\Local\GitHubDesktop\app-2.9.3\GADE\Hein_Kroese_GADE6112_POE\Hein_Kroese_GADE6112_POE\obj\Debug\Hein_Kroese_GADE6112_POE.Properties.Resources.resources
+C:\Users\somet\AppData\Local\GitHubDesktop\app-2.9.3\GADE\Hein_Kroese_GADE6112_POE\Hein_Kroese_GADE6112_POE\obj\Debug\Hein_Kroese_GADE6112_POE.csproj.GenerateResource.cache
+C:\Users\somet\AppData\Local\GitHubDesktop\app-2.9.3\GADE\Hein_Kroese_GADE6112_POE\Hein_Kroese_GADE6112_POE\obj\Debug\Hein_Kroese_GADE6112_POE.csproj.CoreCompileInputs.cache
+C:\Users\somet\AppData\Local\GitHubDesktop\app-2.9.3\GADE\Hein_Kroese_GADE6112_POE\Hein_Kroese_GADE6112_POE\obj\Debug\Hein_Kroese_GADE6112_POE.exe
+C:\Users\somet\AppData\Local\GitHubDesktop\app-2.9.3\GADE\Hein_Kroese_GADE6112_POE\Hein_Kroese_GADE6112_POE\obj\Debug\Hein_Kroese_GADE6112_POE.pdb
