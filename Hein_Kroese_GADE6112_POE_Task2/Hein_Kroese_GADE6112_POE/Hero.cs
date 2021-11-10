@@ -9,7 +9,7 @@ namespace Hein_Kroese_GADE6112_POE
     //Subclass Player to class Character
     class Hero : Character
     {
-        int movementSpeed;
+        
         public Hero(int x, int y) : base(x, y, Tile.TileType.Hero,'H', 2, 10,10)
         {
            
@@ -30,6 +30,7 @@ namespace Hein_Kroese_GADE6112_POE
             string Info = "Player Stats: \n";
             Info += "Hp: " + Health.ToString() + "/" + MaxHealth.ToString() + "\n";
             Info += "Damage: " + Damage.ToString() + "\n";
+            Info += "Gold: " + GoldAmount.ToString() + "\n";
             Info += "[" + x.ToString() + "," + y.ToString() + "]";
             return Info;
         }

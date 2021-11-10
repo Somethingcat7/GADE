@@ -32,6 +32,8 @@ namespace Hein_Kroese_GADE6112_POE
             this.lblMap = new System.Windows.Forms.Label();
             this.lblHeroStats = new System.Windows.Forms.Label();
             this.lblEnemy = new System.Windows.Forms.Label();
+            this.btnSave = new System.Windows.Forms.Button();
+            this.btnLoad = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lblMap
@@ -58,6 +60,7 @@ namespace Hein_Kroese_GADE6112_POE
             this.lblHeroStats.Size = new System.Drawing.Size(140, 20);
             this.lblHeroStats.TabIndex = 1;
             this.lblHeroStats.Text = "{Placeholder}";
+            this.lblHeroStats.Click += new System.EventHandler(this.lblHeroStats_Click);
             // 
             // lblEnemy
             // 
@@ -70,11 +73,33 @@ namespace Hein_Kroese_GADE6112_POE
             this.lblEnemy.TabIndex = 2;
             this.lblEnemy.Text = "{Placeholder}";
             // 
+            // btnSave
+            // 
+            this.btnSave.Location = new System.Drawing.Point(197, 183);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(75, 23);
+            this.btnSave.TabIndex = 3;
+            this.btnSave.Text = "Save";
+            this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
+            // 
+            // btnLoad
+            // 
+            this.btnLoad.Location = new System.Drawing.Point(197, 212);
+            this.btnLoad.Name = "btnLoad";
+            this.btnLoad.Size = new System.Drawing.Size(75, 23);
+            this.btnLoad.TabIndex = 4;
+            this.btnLoad.Text = "Load";
+            this.btnLoad.UseVisualStyleBackColor = true;
+            this.btnLoad.Click += new System.EventHandler(this.btnLoad_Click);
+            // 
             // frmGame
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(933, 485);
+            this.Controls.Add(this.btnLoad);
+            this.Controls.Add(this.btnSave);
             this.Controls.Add(this.lblEnemy);
             this.Controls.Add(this.lblHeroStats);
             this.Controls.Add(this.lblMap);
@@ -92,6 +117,8 @@ namespace Hein_Kroese_GADE6112_POE
         private System.Windows.Forms.Label lblMap;
         private System.Windows.Forms.Label lblHeroStats;
         private System.Windows.Forms.Label lblEnemy;
+        private System.Windows.Forms.Button btnSave;
+        private System.Windows.Forms.Button btnLoad;
     }
 }
 

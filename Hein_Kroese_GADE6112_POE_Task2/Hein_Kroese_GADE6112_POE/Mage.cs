@@ -7,10 +7,21 @@ using System.Threading.Tasks;
 namespace Hein_Kroese_GADE6112_POE
 {
     class Mage : Enemy 
-    {
-        public Mage(int x, int y, TileType tileType, char symbol = 'M', int health = 5, int maxHealth = 5, int damage = 5) : base(x, y, tileType, symbol, health, maxHealth, damage)
+    {   //Mage constructor
+        public Mage(int x, int y) : base(x, y, TileType.Enemy, 'M', 5, 5, 5)
         {
 
         }
+
+        public override MovementEnum ReturnMove()
+        {
+            return base.ReturnMove();
+        }
+
+        public override bool CheckRange(Character Target)
+        {
+            return base.CheckRange(Target);
+        }
+
     }
 }

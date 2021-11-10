@@ -11,6 +11,7 @@ namespace Hein_Kroese_GADE6112_POE
         protected int Health;
         protected int MaxHealth;
         protected int Damage;
+        protected int GoldAmount;
         protected string TileTyping;
         private Tile[] vision;
         private MovementEnum movement;
@@ -20,6 +21,7 @@ namespace Hein_Kroese_GADE6112_POE
         public int getMaxHealth { set { MaxHealth = value; } get { return MaxHealth; } }
         public int getDamage { set { Damage = value; } get { return Damage; } }
         public string getType { set { TileTyping = value; } get { return TileTyping; } }
+        public int getGoldAmount { set{ GoldAmount = value; } get{ return GoldAmount; } }
         public Tile[] Vision { set { vision = value; } get { return vision; } }
         public MovementEnum MOVEMENT {set { movement = value; } get { return movement; }}
 
@@ -61,15 +63,38 @@ namespace Hein_Kroese_GADE6112_POE
             return Dieded;
         }
         
-        /*public virtual bool CheckRange(Character Target)
-        { 
+        private int DistanceTo(Character Target)
+        {
+            int calcDistance(int origin, int destination)
+            {
+                int distance = destination - origin;
+                return Math.Abs(distance);
+            }
 
-        }*/
+            return (calcDistance(this.x, Target.x) + calcDistance(this.y, Target.y));
+        }
+
+        public virtual bool CheckRange(Character Target)
+        { 
+            if (DistanceTo(Target) == 1)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
         public abstract MovementEnum ReturnMove();
 
         public abstract override string ToString();
 
         //Hero vision array
         Tile[] VisionArray = new Tile[4];
+
+        public void Pickup(Item i)
+        {
+           
+        }
     }
 }

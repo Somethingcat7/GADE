@@ -30,7 +30,7 @@ namespace Hein_Kroese_GADE6112_POE
             Hero,
             Enemy,
             Gold,
-            Weapon,
+            Item,
             Obstacle,
             Empty
         }
@@ -42,39 +42,7 @@ namespace Hein_Kroese_GADE6112_POE
             Left,
             Right,
             None
-        }
-
-        //Code for tyle types
-        public void ExampleMethod(TileType input)
-        {
-            switch (input)
-            {
-                case TileType.Hero:
-                    //Code for hero tile here
-                    break;
-
-                case TileType.Enemy:
-                    //Code for enemy tile here
-                    break;
-
-                case TileType.Gold:
-                    //Code for gold tile here
-                    break;
-
-                case TileType.Weapon:
-                    //Code for weapon tile here
-                    break;
-
-                case TileType.Obstacle:
-                    //code for obstacle tile here
-                    break;
-
-                case TileType.Empty:
-                    //code for empty tile here
-                    break;
-
-            }
-        }          
+        }                 
     }
 }
     
