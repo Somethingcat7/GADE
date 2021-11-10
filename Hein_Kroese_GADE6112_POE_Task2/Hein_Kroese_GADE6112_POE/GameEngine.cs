@@ -78,14 +78,14 @@ namespace Hein_Kroese_GADE6112_POE
 
         }
 
-        public static void SaveGame(string Map)
+        public static void SaveGame(string Map, string HeroStats)
         {
-            var dir = Directory.GetCurrentDirectory();
-            var file = Path.Combine(dir, "Save.dat");
+            var dirMap = Directory.GetCurrentDirectory();
+            var fileMap = Path.Combine(dirMap, "Map.dat");
 
             try
             {
-                FileStream fs = new FileStream(file, FileMode.Create, FileAccess.Write);
+                FileStream fs = new FileStream(fileMap, FileMode.Create, FileAccess.Write);
                                
                 if (fs.CanWrite)
                 {
@@ -100,12 +100,35 @@ namespace Hein_Kroese_GADE6112_POE
             {
                 throw;
             }
+            
+            var dirHero = Directory.GetCurrentDirectory();
+            var fileHero = Path.Combine(dirHero, "Hero.dat");
+
+            try
+            {
+                FileStream fs = new FileStream(fileHero, FileMode.Create, FileAccess.Write);
+
+                if (fs.CanWrite)
+                {
+                    byte[] buffer = Encoding.ASCII.GetBytes(HeroStats);
+                    fs.Write(buffer, 0, buffer.Length);
+                }
+
+                fs.Flush();
+                fs.Close();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+
         }
 
-        public static string LoadGame()
+        public static string LoadGame(string strFile)
         {
+
             var dir = Directory.GetCurrentDirectory();
-            var file = Path.Combine(dir, "Save.dat");
+            var file = Path.Combine(dir, strFile);
             string Text = String.Empty;
 
             try

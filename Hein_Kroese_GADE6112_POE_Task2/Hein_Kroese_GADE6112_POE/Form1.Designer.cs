@@ -67,7 +67,7 @@ namespace Hein_Kroese_GADE6112_POE
             this.lblEnemy.AutoSize = true;
             this.lblEnemy.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.lblEnemy.Font = new System.Drawing.Font("Courier New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblEnemy.Location = new System.Drawing.Point(197, 160);
+            this.lblEnemy.Location = new System.Drawing.Point(197, 106);
             this.lblEnemy.Name = "lblEnemy";
             this.lblEnemy.Size = new System.Drawing.Size(140, 20);
             this.lblEnemy.TabIndex = 2;
@@ -75,12 +75,13 @@ namespace Hein_Kroese_GADE6112_POE
             // 
             // btnSave
             // 
+            this.btnSave.BackColor = System.Drawing.SystemColors.Control;
             this.btnSave.Location = new System.Drawing.Point(197, 183);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(75, 23);
             this.btnSave.TabIndex = 3;
             this.btnSave.Text = "Save";
-            this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.UseVisualStyleBackColor = false;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // btnLoad

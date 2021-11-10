@@ -20,7 +20,45 @@ namespace Hein_Kroese_GADE6112_POE
 
         public override bool CheckRange(Character Target)
         {
-            return base.CheckRange(Target);
+            if (Target.getx == x + 1 && Target.gety == y)
+            {
+                return true;
+            }
+            else if (Target.getx == x - 1 && Target.gety == y)
+            {
+                return true;
+            }
+            else if (Target.getx == x && Target.gety == y + 1)
+            {
+                return true;
+            }
+            else if (Target.getx == x && Target.gety == y - 1)
+            {
+                return true;
+            }
+            else if (Target.getx == x - 1 && Target.gety == y - 1)
+            {
+                return true;
+            }
+
+            else if (Target.getx == x - 1 && Target.gety == y + 1)
+            {
+                return true;
+            }
+
+            else if (Target.getx == x + 1 && Target.gety == y - 1)
+            {
+                return true;
+            }
+
+            else if (Target.getx == x + 1 && Target.gety == y + 1)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
 
     }
