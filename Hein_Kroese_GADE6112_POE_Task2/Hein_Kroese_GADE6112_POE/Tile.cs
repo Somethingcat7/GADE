@@ -15,7 +15,7 @@ namespace Hein_Kroese_GADE6112_POE
         public int getx { set { x = value; } get { return x; } }
         public int gety { set { y = value; } get { return y; } }
         public char getsymbol { set { symbol = value; } get { return symbol; } }
-        public TileType Tiletyping { set { Tiletyping = value; } get { return Tiletyping; } }
+        public Enums.TileType Tiletyping { set { Tiletyping = value; } get { return Tiletyping; } }
               
         protected Tile(int x, int y ,char symbol)
         {
@@ -24,25 +24,7 @@ namespace Hein_Kroese_GADE6112_POE
             this.symbol = symbol;
         }
 
-        //Tile types
-        public enum TileType
-        {
-            Hero,
-            Enemy,
-            Gold,
-            Item,
-            Obstacle,
-            Empty
-        }
-        //Movements
-        public enum MovementEnum
-        {
-            Up,
-            Down,
-            Left,
-            Right,
-            None
-        }                 
+             
     }
 }
     

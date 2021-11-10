@@ -11,7 +11,7 @@ namespace Hein_Kroese_GADE6112_POE
     {
         protected Random RanNum = new Random();
 
-        protected Enemy(int x, int y, TileType TileType, char symbol, int health, int maxHP, int damage) : base(x, y, TileType , symbol, health, maxHP, damage)
+        protected Enemy(int x, int y, Enums.TileType TileType, char symbol, int health, int maxHP, int damage) : base(x, y, TileType , symbol, health, maxHP, damage)
         {
             this.Health = health;
             this.MaxHealth = maxHP;
@@ -29,9 +29,9 @@ namespace Hein_Kroese_GADE6112_POE
 
         }*/
 
-        public override MovementEnum ReturnMove()
+        public override Enums.MovementEnum ReturnMove(Enums.MovementEnum move = Enums.MovementEnum.None)
         {
-            return MovementEnum.None;
+            return Enums.MovementEnum.None;
         }
 
         

@@ -26,7 +26,7 @@ namespace Hein_Kroese_GADE6112_POE
 
         public GameEngine()
         {
-            MappyBoi = new Map(10, 14, 10, 14, 4, 3);
+            MappyBoi = new Map(10, 14, 10, 14, 6, 3);
         }
 
         //It does all of the things :D
