@@ -46,6 +46,7 @@ namespace Hein_Kroese_GADE6112_POE
             this.lblMap.Text = "XXXXXXXXXXXXXX\r\nX......G.....X\r\nX......G.....X\r\nX............X\r\nX....G.G.....X\r\nX" +
     ".....GH.....X\r\nX............X\r\nXXXXXXXXXXXXXX ";
             this.lblMap.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblMap.Click += new System.EventHandler(this.lblMap_Click);
             // 
             // lblHeroStats
             // 

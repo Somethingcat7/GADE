@@ -15,8 +15,9 @@ namespace Hein_Kroese_GADE6112_POE
         public int getx { set { x = value; } get { return x; } }
         public int gety { set { y = value; } get { return y; } }
         public char getsymbol { set { symbol = value; } get { return symbol; } }
+        public TileType Tiletyping { set { Tiletyping = value; } get { return Tiletyping; } }
               
-        protected Tile(int x, int y, char symbol)
+        protected Tile(int x, int y ,char symbol)
         {
             this.x = x;
             this.y = y;

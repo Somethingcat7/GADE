@@ -8,7 +8,7 @@ namespace Hein_Kroese_GADE6112_POE
 {
     class Obstacle : Tile
     {
-        protected Obstacle(int x, int y, char symbol) : base(x, y, symbol)
+        public Obstacle(int x, int y, char symbol) : base(x, y, 'X')
         {
             
         }

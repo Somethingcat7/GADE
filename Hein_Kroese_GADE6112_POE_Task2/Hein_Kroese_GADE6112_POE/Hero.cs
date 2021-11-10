@@ -10,9 +10,9 @@ namespace Hein_Kroese_GADE6112_POE
     class Hero : Character
     {
         int movementSpeed;
-        public Hero(int x, int y, char symbol, int health, int maxHealth, int damage, int movespeed) : base(x, y, 'H', 20, 20, 2)
+        public Hero(int x, int y) : base(x, y, Tile.TileType.Hero,'H', 2, 10,10)
         {
-            this.movementSpeed = movespeed;
+           
         }
 
         public override void Attack(Character target)
@@ -27,7 +27,79 @@ namespace Hein_Kroese_GADE6112_POE
 
         public override string ToString()
         {
-            return "Player stats: " + Environment.NewLine + "HP: " + Health.ToString() + "/" + MaxHealth.ToString() + Environment.NewLine + "Damage: " + Damage.ToString() + Environment.NewLine + "[" + x.ToString() + "," + y.ToString() + "]";
+            string Info = "Player Stats: \n";
+            Info += "Hp: " + Health.ToString() + "/" + MaxHealth.ToString() + "\n";
+            Info += "Damage: " + Damage.ToString() + "\n";
+            Info += "[" + x.ToString() + "," + y.ToString() + "]";
+            return Info;
+        }
+
+        bool CheckValidMove(MovementEnum Charactermove)
+        {
+            bool IsValid = false;
+
+            switch (Charactermove)
+            {
+                case MovementEnum.Right:
+                    foreach (Tile T in Vision)
+                    { 
+                        if (T.getx == x + 1)
+                        {
+                            if (T.Tiletyping == TileType.Empty)
+                            {
+                                IsValid = true;
+                                break;
+                            }
+                        }
+                    }
+                    break;
+
+                case MovementEnum.Left:
+                    foreach (Tile T in Vision)
+                    {
+                        if (T.getx == x + 1)
+                        {
+                            if (T.Tiletyping == TileType.Empty)
+                            {
+                                IsValid = true;
+                                break;
+                            }
+                        }
+                    }
+                    break;
+
+                case MovementEnum.Up:
+                    foreach (Tile T in Vision)
+                    {
+                        if (T.getx == x + 1)
+                        {
+                            if (T.Tiletyping == TileType.Empty)
+                            {
+                                IsValid = true;
+                                break;
+                            }
+                        }
+                    }
+                    break;
+
+                case MovementEnum.Down:
+                    foreach (Tile T in Vision)
+                    {
+                        if (T.getx == x + 1)
+                        {
+                            if (T.Tiletyping == TileType.Empty)
+                            {
+                                IsValid = true;
+                                break;
+                            }
+                        }
+                    }
+                    break;
+
+                    
+            }
+            
+            return IsValid;
         }
     }
 }

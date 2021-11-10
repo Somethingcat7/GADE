@@ -11,15 +11,23 @@ namespace Hein_Kroese_GADE6112_POE
     {
         protected Random RanNum = new Random();
 
+        protected Enemy(int x, int y, TileType TileType, char symbol, int health, int maxHP, int damage) : base(x, y, TileType , symbol, health, maxHP, damage)
+        {
+            this.Health = health;
+            this.MaxHealth = maxHP;
+            this.Damage = damage;
+
+        }
+
         public int Coords(int min, int max)
         {
             return RanNum.Next(min, max);
         }
         
-        public Enemy(int x, int y, char symbol, int health, int maxHealth, int damage) : base(x, y, symbol, health, maxHealth, damage)
+       /* public Enemy(int x, int y,TileType tiletype ,char symbol, int health, int maxHealth, int damage) : base(x, y, tiletype, symbol, health, maxHealth, damage)
         {
 
-        }
+        }*/
 
         public override MovementEnum ReturnMove()
         {
@@ -32,5 +40,15 @@ namespace Hein_Kroese_GADE6112_POE
         {
             target.gethealth = target.gethealth - 5;
         }
+
+        public override string ToString()
+        {
+            string Info = TileTyping + "\n";
+            Info += "at ["+ x.ToString() + "," + y.ToString() + "] \n";
+            Info += Health.ToString() + "Hp \n";
+            Info += "(" + Damage.ToString() + ")";
+            return Info;
+        }
+
     }
 }
