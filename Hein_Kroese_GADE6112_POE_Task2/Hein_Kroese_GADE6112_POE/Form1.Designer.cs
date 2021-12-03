@@ -34,6 +34,11 @@ namespace Hein_Kroese_GADE6112_POE
             this.lblEnemy = new System.Windows.Forms.Label();
             this.btnSave = new System.Windows.Forms.Button();
             this.btnLoad = new System.Windows.Forms.Button();
+            this.btnUp = new System.Windows.Forms.Button();
+            this.btnDown = new System.Windows.Forms.Button();
+            this.btnRight = new System.Windows.Forms.Button();
+            this.btnLeft = new System.Windows.Forms.Button();
+            this.btnAttack = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lblMap
@@ -75,30 +80,86 @@ namespace Hein_Kroese_GADE6112_POE
             // 
             // btnSave
             // 
-            this.btnSave.BackColor = System.Drawing.SystemColors.Control;
-            this.btnSave.Location = new System.Drawing.Point(197, 183);
+            this.btnSave.Font = new System.Drawing.Font("Courier New", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSave.Location = new System.Drawing.Point(190, 222);
             this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(75, 23);
+            this.btnSave.Size = new System.Drawing.Size(75, 29);
             this.btnSave.TabIndex = 3;
             this.btnSave.Text = "Save";
-            this.btnSave.UseVisualStyleBackColor = false;
+            this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // btnLoad
             // 
-            this.btnLoad.Location = new System.Drawing.Point(197, 212);
+            this.btnLoad.Font = new System.Drawing.Font("Courier New", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnLoad.Location = new System.Drawing.Point(362, 222);
             this.btnLoad.Name = "btnLoad";
-            this.btnLoad.Size = new System.Drawing.Size(75, 23);
+            this.btnLoad.Size = new System.Drawing.Size(75, 29);
             this.btnLoad.TabIndex = 4;
             this.btnLoad.Text = "Load";
             this.btnLoad.UseVisualStyleBackColor = true;
             this.btnLoad.Click += new System.EventHandler(this.btnLoad_Click);
             // 
+            // btnUp
+            // 
+            this.btnUp.Font = new System.Drawing.Font("Courier New", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnUp.Location = new System.Drawing.Point(271, 222);
+            this.btnUp.Name = "btnUp";
+            this.btnUp.Size = new System.Drawing.Size(85, 29);
+            this.btnUp.TabIndex = 5;
+            this.btnUp.Text = "^";
+            this.btnUp.UseVisualStyleBackColor = true;
+            // 
+            // btnDown
+            // 
+            this.btnDown.Font = new System.Drawing.Font("Courier New", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDown.Location = new System.Drawing.Point(271, 293);
+            this.btnDown.Name = "btnDown";
+            this.btnDown.Size = new System.Drawing.Size(85, 29);
+            this.btnDown.TabIndex = 6;
+            this.btnDown.Text = "v";
+            this.btnDown.UseVisualStyleBackColor = true;
+            // 
+            // btnRight
+            // 
+            this.btnRight.Font = new System.Drawing.Font("Courier New", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRight.Location = new System.Drawing.Point(362, 257);
+            this.btnRight.Name = "btnRight";
+            this.btnRight.Size = new System.Drawing.Size(75, 30);
+            this.btnRight.TabIndex = 7;
+            this.btnRight.Text = ">";
+            this.btnRight.UseVisualStyleBackColor = true;
+            // 
+            // btnLeft
+            // 
+            this.btnLeft.Font = new System.Drawing.Font("Courier New", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnLeft.Location = new System.Drawing.Point(190, 257);
+            this.btnLeft.Name = "btnLeft";
+            this.btnLeft.Size = new System.Drawing.Size(75, 30);
+            this.btnLeft.TabIndex = 8;
+            this.btnLeft.Text = "<";
+            this.btnLeft.UseVisualStyleBackColor = true;
+            // 
+            // btnAttack
+            // 
+            this.btnAttack.Font = new System.Drawing.Font("Courier New", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAttack.Location = new System.Drawing.Point(271, 257);
+            this.btnAttack.Name = "btnAttack";
+            this.btnAttack.Size = new System.Drawing.Size(85, 30);
+            this.btnAttack.TabIndex = 9;
+            this.btnAttack.Text = "Attack";
+            this.btnAttack.UseVisualStyleBackColor = true;
+            // 
             // frmGame
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(933, 485);
+            this.ClientSize = new System.Drawing.Size(440, 326);
+            this.Controls.Add(this.btnAttack);
+            this.Controls.Add(this.btnLeft);
+            this.Controls.Add(this.btnRight);
+            this.Controls.Add(this.btnDown);
+            this.Controls.Add(this.btnUp);
             this.Controls.Add(this.btnLoad);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.lblEnemy);
@@ -120,6 +181,11 @@ namespace Hein_Kroese_GADE6112_POE
         private System.Windows.Forms.Label lblEnemy;
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.Button btnLoad;
+        private System.Windows.Forms.Button btnUp;
+        private System.Windows.Forms.Button btnDown;
+        private System.Windows.Forms.Button btnRight;
+        private System.Windows.Forms.Button btnLeft;
+        private System.Windows.Forms.Button btnAttack;
     }
 }
 

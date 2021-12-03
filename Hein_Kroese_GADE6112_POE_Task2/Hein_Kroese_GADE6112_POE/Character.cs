@@ -14,7 +14,7 @@ namespace Hein_Kroese_GADE6112_POE
         protected int GoldAmount;
         protected string TileTyping;
         private Tile[] vision;
-        private Enums.MovementEnum movement;
+        private MovementEnum movement;
 
         //Accessor for variables Health, MaxHealth, Damage, Tile Type, Vision and Movement
         public int gethealth { set { Health = value; } get { return Health; } }
@@ -23,7 +23,7 @@ namespace Hein_Kroese_GADE6112_POE
         public string getType { set { TileTyping = value; } get { return TileTyping; } }
         public int getGoldAmount { set{ GoldAmount = value; } get{ return GoldAmount; } }
         public Tile[] Vision { set { vision = value; } get { return vision; } }
-        public Enums.MovementEnum MOVEMENT {set { movement = value; } get { return movement; }}
+        public MovementEnum MOVEMENT {set { movement = value; } get { return movement; }}
 
         /*private int distanceTo() 
         { 
@@ -31,7 +31,7 @@ namespace Hein_Kroese_GADE6112_POE
         }*/
 
         //Set values for variables
-        protected Character(int x, int y, Enums.TileType tiletype, char symbol, int health, int maxHealth, int damage) : base(x, y, symbol)
+        protected Character(int x, int y, TileType tiletype, char symbol, int health, int maxHealth, int damage) : base(x, y, symbol)
         {
             this.Health = health;
             this.MaxHealth = maxHealth;
@@ -85,7 +85,7 @@ namespace Hein_Kroese_GADE6112_POE
                 return false;
             }
         }
-        public abstract Enums.MovementEnum ReturnMove(Enums.MovementEnum x);
+        public abstract MovementEnum ReturnMove(MovementEnum x);
 
         public abstract override string ToString();
 
@@ -95,6 +95,27 @@ namespace Hein_Kroese_GADE6112_POE
         public void Pickup(Item i)
         {
            
+        }
+
+        public void Move(MovementEnum move)
+        {
+            switch (move)
+            {
+                case MovementEnum.Up:
+                    gety -= 1;
+                    break;
+                case MovementEnum.Down:
+                    gety += 1;
+                    break;
+                case MovementEnum.Left:
+                    getx -= 1;
+                    break;
+                case MovementEnum.Right:
+                   getx += 1;
+                    break;
+                case MovementEnum.None:
+                    break;
+            }
         }
     }
 }

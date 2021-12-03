@@ -22,9 +22,8 @@ namespace Hein_Kroese_GADE6112_POE
         GameEngine VideoJames = new GameEngine();
         private void frmGame_Load(object sender, EventArgs e)
         {
-            VideoJames.MappyGurl.updateMap();
            lblMap.Text = VideoJames.ToString();
-           lblHeroStats.Text = VideoJames.MappyGurl.Player.ToString();
+           lblHeroStats.Text = VideoJames.Map.Player.ToString();
             /* lblEnemy.Text = VideoJames.MappyGurl.Gobolobolin.ToString();*/
         }
 
@@ -40,14 +39,12 @@ namespace Hein_Kroese_GADE6112_POE
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            GameEngine.SaveGame(VideoJames.ToString(),VideoJames.MappyGurl.Player.ToString());
+            GameEngine.SaveGame(VideoJames.ToString());
         }
 
         private void btnLoad_Click(object sender, EventArgs e)
         {
-            
-            lblMap.Text = GameEngine.LoadGame("Map.dat");
-            lblHeroStats.Text = GameEngine.LoadGame("Hero.dat");
+            lblMap.Text = GameEngine.LoadGame();
         }
     }
 }

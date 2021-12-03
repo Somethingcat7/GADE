@@ -8,57 +8,19 @@ namespace Hein_Kroese_GADE6112_POE
 {
     class Mage : Enemy 
     {   //Mage constructor
-        public Mage(int x, int y) : base(x, y, Enums.TileType.Enemy, 'M', 5, 5, 5)
+        public Mage(int x, int y) : base(x, y, TileType.Enemy, 'M', 5, 5, 5)
         {
 
         }
 
-        public override Enums.MovementEnum ReturnMove(Enums.MovementEnum move = Enums.MovementEnum.None)
+        public override MovementEnum ReturnMove(MovementEnum move = MovementEnum.None)
         {
-           return Enums.MovementEnum.None;
+           return MovementEnum.None;
         }
 
         public override bool CheckRange(Character Target)
         {
-            if (Target.getx == x + 1 && Target.gety == y)
-            {
-                return true;
-            }
-            else if (Target.getx == x - 1 && Target.gety == y)
-            {
-                return true;
-            }
-            else if (Target.getx == x && Target.gety == y + 1)
-            {
-                return true;
-            }
-            else if (Target.getx == x && Target.gety == y - 1)
-            {
-                return true;
-            }
-            else if (Target.getx == x - 1 && Target.gety == y - 1)
-            {
-                return true;
-            }
-
-            else if (Target.getx == x - 1 && Target.gety == y + 1)
-            {
-                return true;
-            }
-
-            else if (Target.getx == x + 1 && Target.gety == y - 1)
-            {
-                return true;
-            }
-
-            else if (Target.getx == x + 1 && Target.gety == y + 1)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            return base.CheckRange(Target);
         }
 
     }

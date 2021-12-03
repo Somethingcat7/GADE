@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace Hein_Kroese_GADE6112_POE
 {
-    class Enums
-    {
+   
+    
         //Tile types
         public enum TileType
         {
@@ -28,4 +28,4 @@ namespace Hein_Kroese_GADE6112_POE
             None
         }
     }
-}
+

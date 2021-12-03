@@ -26,9 +26,9 @@ namespace Hein_Kroese_GADE6112_POE
 
         
         //Arry things
-        private Tile[,] theMap;
-        private Enemy[] arrayofenemies;
-        private Item[] Itemythings;
+        public Tile[,] theMap;
+        public Enemy[] arrayofenemies;
+        public Item[] Itemythings;
         
         //Player Variable
         private Hero player;
@@ -51,18 +51,18 @@ namespace Hein_Kroese_GADE6112_POE
 
             FillMap();
 
-            Player = (Hero)create(Enums.TileType.Hero);
+            Player = (Hero)create(TileType.Hero);
             theMap[player.getx, player.gety] = player;
 
             for (int i = 0; i < arrayofenemies.Length; i++)
             {
-                arrayofenemies[i] = (Enemy)create(Enums.TileType.Enemy);
+                arrayofenemies[i] = (Enemy)create(TileType.Enemy);
                 theMap[arrayofenemies[i].getx, arrayofenemies[i].gety] = arrayofenemies[i];
             }
             
             for (int i = 0; i < Itemythings.Length; i++)
             {
-                Itemythings[i] = (Gold)create(Enums.TileType.Gold);
+                Itemythings[i] = (Gold)create(TileType.Gold);
                 theMap[Itemythings[i].getx, Itemythings[i].gety] = Itemythings[i];
             }
 
@@ -89,7 +89,7 @@ namespace Hein_Kroese_GADE6112_POE
         public Tile[,] Mappymap { set { theMap = value; } get { return theMap; } }
        
         //Create the tiles, it's litteraly in the name
-        private Tile create(Enums.TileType MakingOfTile)
+        private Tile create(TileType MakingOfTile)
         {
             Random RanDum = new Random();
             int RNGX;
@@ -112,7 +112,7 @@ namespace Hein_Kroese_GADE6112_POE
 
             switch(MakingOfTile)
             {
-                case Enums.TileType.Hero:
+                case TileType.Hero:
                     do
                     {
                         RNGX = RanDum.Next(1, theMap.GetLength(0));
@@ -121,7 +121,7 @@ namespace Hein_Kroese_GADE6112_POE
 
                     return new Hero(RNGX, RNGY);
 
-                case Enums.TileType.Enemy:
+                case TileType.Enemy:
                     do
                     {
                         RNGX = RanDum.Next(1, theMap.GetLength(0));
@@ -137,7 +137,7 @@ namespace Hein_Kroese_GADE6112_POE
                     {
                         return new Mage(RNGX, RNGY);
                     }
-                case Enums.TileType.Gold:
+                case TileType.Gold:
                     do
                     {
                         RNGX = RanDum.Next(1, theMap.GetLength(0));

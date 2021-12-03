@@ -10,7 +10,7 @@ namespace Hein_Kroese_GADE6112_POE
     class Hero : Character
     {
         
-        public Hero(int x, int y) : base(x, y, Enums.TileType.Hero,'H', 2, 10,10)
+        public Hero(int x, int y) : base(x, y,TileType.Hero,'H', 2, 10,10)
         {
            
         }
@@ -20,9 +20,9 @@ namespace Hein_Kroese_GADE6112_POE
             target.gethealth = target.gethealth - 5;
         }
 
-        public override Enums.MovementEnum ReturnMove(Enums.MovementEnum move = Enums.MovementEnum.None)
+        public override MovementEnum ReturnMove(MovementEnum move = MovementEnum.None)
         {
-            return Enums.MovementEnum.None;
+            return MovementEnum.None;
         }
 
         public override string ToString()
@@ -35,18 +35,18 @@ namespace Hein_Kroese_GADE6112_POE
             return Info;
         }
 
-        bool CheckValidMove(Enums.MovementEnum Charactermove)
+        bool CheckValidMove(MovementEnum Charactermove)
         {
             bool IsValid = false;
 
             switch (Charactermove)
             {
-                case Enums.MovementEnum.Right:
+                case MovementEnum.Right:
                     foreach (Tile T in Vision)
                     { 
                         if (T.getx == x + 1)
                         {
-                            if (T.Tiletyping == Enums.TileType.Empty)
+                            if (T.Tiletyping ==TileType.Empty)
                             {
                                 IsValid = true;
                                 break;
@@ -55,12 +55,12 @@ namespace Hein_Kroese_GADE6112_POE
                     }
                     break;
 
-                case Enums.MovementEnum.Left:
+                case MovementEnum.Left:
                     foreach (Tile T in Vision)
                     {
                         if (T.getx == x + 1)
                         {
-                            if (T.Tiletyping == Enums.TileType.Empty)
+                            if (T.Tiletyping == TileType.Empty)
                             {
                                 IsValid = true;
                                 break;
@@ -69,12 +69,12 @@ namespace Hein_Kroese_GADE6112_POE
                     }
                     break;
 
-                case Enums.MovementEnum.Up:
+                case MovementEnum.Up:
                     foreach (Tile T in Vision)
                     {
                         if (T.getx == x + 1)
                         {
-                            if (T.Tiletyping == Enums.TileType.Empty)
+                            if (T.Tiletyping == TileType.Empty)
                             {
                                 IsValid = true;
                                 break;
@@ -83,12 +83,12 @@ namespace Hein_Kroese_GADE6112_POE
                     }
                     break;
 
-                case Enums.MovementEnum.Down:
+                case MovementEnum.Down:
                     foreach (Tile T in Vision)
                     {
                         if (T.getx == x + 1)
                         {
-                            if (T.Tiletyping == Enums.TileType.Empty)
+                            if (T.Tiletyping == TileType.Empty)
                             {
                                 IsValid = true;
                                 break;

@@ -19,52 +19,111 @@ namespace Hein_Kroese_GADE6112_POE
         private string MapString = String.Empty;
 
         
-        private Map MappyBoi;
+        private Map map;
 
-        public Map MappyGurl { set { MappyBoi = value; } get { return MappyBoi; } }
+        public Map Map { set { map = value; } get { return map; } }
 
 
         public GameEngine()
         {
-            MappyBoi = new Map(10, 14, 10, 14, 6, 3);
+            map = new Map(10, 14, 10, 14, 6, 3);
         }
+        //Player doing a movement
+        public void MovePlayer(MovementEnum motion)
+        {
+            switch (motion)
+            {
+                //move up
+                case MovementEnum.Up:
+                    map.Player.Move(map.Player.ReturnMove(MovementEnum.Up));
+                    break;
 
+                //move down
+                case MovementEnum.Down:
+                    map.Player.Move(map.Player.ReturnMove(MovementEnum.Down));
+                    break;
+
+                //move left
+                case MovementEnum.Left:
+                    map.Player.Move(map.Player.ReturnMove(MovementEnum.Left));
+                    break;
+
+                //move right
+                case MovementEnum.Right:
+                    map.Player.Move(map.Player.ReturnMove(MovementEnum.Right));
+                    break;
+            }
+        }
+        //Enemies doing a movement
+        public void MoveEnemies(MovementEnum movement)
+        {
+            for (int i = 0; i < map.arrayofenemies.Length; i++)
+            {
+                map.arrayofenemies[i].Move(map.arrayofenemies[i].ReturnMove(movement));
+            }
+            EnemyAttack();
+        }
+        //Enemies doing an attack
+        public void EnemyAttack()
+        {
+            for (int i = 0; i < map.arrayofenemies.Length; i++)
+            {
+
+                switch (map.arrayofenemies[i].getsymbol)
+                {
+                    case 'G':
+                        foreach (Tile T in map.arrayofenemies[i].Vision)
+                        {
+                            if (T.getx == map.Player.getx && (T.gety == map.Player.gety))
+                            {
+                                map.arrayofenemies[i].Attack(map.Player);
+                            }
+                        }
+                        break;
+
+                    case 'M':
+                        map.arrayofenemies[i].Attack(map.Player);
+                        break;
+                }
+            }
+
+        }
         //It does all of the things :D
         public override string ToString()
         {
             string MapStringy = string.Empty;
-            char[,] MapChar = new char[MappyBoi.Width, MappyBoi.Height];
+            char[,] MapChar = new char[map.Width, map.Height];
 
-            for (int i = 0; i < MappyBoi.Width; i++)
+            for (int i = 0; i < map.Width; i++)
             {
-                for (int j = 0; j < MappyBoi.Height; j++)
+                for (int j = 0; j < map.Height; j++)
                 {
-                    if (MappyBoi.Tilemappy[i, j].GetType() == typeof(Obstacle))
+                    if (map.Tilemappy[i, j].GetType() == typeof(Obstacle))
                     {
                         MapChar[i, j] = Obsticle;
                     }
                     
-                    if (MappyBoi.Tilemappy[i,j].GetType() == typeof(Gold))
+                    if (map.Tilemappy[i,j].GetType() == typeof(Gold))
                     {
                         MapChar[i, j] = MONEY;
                     }
 
-                    if (MappyBoi.Tilemappy[i, j].GetType() == typeof(Hero))
+                    if (map.Tilemappy[i, j].GetType() == typeof(Hero))
                     {
                         MapChar[i, j] = HeroBoi;
                     }
 
-                    if (MappyBoi.Tilemappy[i, j].GetType() == typeof(EmptyTile))
+                    if (map.Tilemappy[i, j].GetType() == typeof(EmptyTile))
                     {
                         MapChar[i, j] = EmptySpace;
                     }
                     
-                    if (MappyBoi.Tilemappy[i, j].GetType() == typeof(Goblin))
+                    if (map.Tilemappy[i, j].GetType() == typeof(Goblin))
                     {
                         MapChar[i, j] = GoblinyBoi;
                     }
 
-                    if (MappyBoi.Tilemappy[i, j].GetType() == typeof(Mage))
+                    if (map.Tilemappy[i, j].GetType() == typeof(Mage))
                     {
                         MapChar[i, j] = Magewage;
                     }
@@ -78,14 +137,29 @@ namespace Hein_Kroese_GADE6112_POE
 
         }
 
-        public static void SaveGame(string Map, string HeroStats)
+        //Redraw the map
+        public string redraw()
         {
-            var dirMap = Directory.GetCurrentDirectory();
-            var fileMap = Path.Combine(dirMap, "Map.dat");
+            string output = "";
+            for (int y = 0; y < Map.Tilemappy.GetLength(1); y++)
+            {
+                for (int x = 0; x < Map.Tilemappy.GetLength(0); x++)
+                {
+                    output += Map.Tilemappy[x, y].getsymbol;
+                }
+                output += '\n';
+            }
+            return output;
+        }
+
+        public static void SaveGame(string Map)
+        {
+            var dir = Directory.GetCurrentDirectory();
+            var file = Path.Combine(dir, "Save.dat");
 
             try
             {
-                FileStream fs = new FileStream(fileMap, FileMode.Create, FileAccess.Write);
+                FileStream fs = new FileStream(file, FileMode.Create, FileAccess.Write);
                                
                 if (fs.CanWrite)
                 {
@@ -100,35 +174,12 @@ namespace Hein_Kroese_GADE6112_POE
             {
                 throw;
             }
-            
-            var dirHero = Directory.GetCurrentDirectory();
-            var fileHero = Path.Combine(dirHero, "Hero.dat");
-
-            try
-            {
-                FileStream fs = new FileStream(fileHero, FileMode.Create, FileAccess.Write);
-
-                if (fs.CanWrite)
-                {
-                    byte[] buffer = Encoding.ASCII.GetBytes(HeroStats);
-                    fs.Write(buffer, 0, buffer.Length);
-                }
-
-                fs.Flush();
-                fs.Close();
-            }
-            catch (Exception)
-            {
-                throw;
-            }
-
         }
 
-        public static string LoadGame(string strFile)
+        public static string LoadGame()
         {
-
             var dir = Directory.GetCurrentDirectory();
-            var file = Path.Combine(dir, strFile);
+            var file = Path.Combine(dir, "Save.dat");
             string Text = String.Empty;
 
             try
