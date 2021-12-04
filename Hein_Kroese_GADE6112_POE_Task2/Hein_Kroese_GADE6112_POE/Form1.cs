@@ -46,5 +46,37 @@ namespace Hein_Kroese_GADE6112_POE
         {
             lblMap.Text = GameEngine.LoadGame();
         }
+
+        private void btnUp_Click(object sender, EventArgs e)
+        {
+            VideoJames.MovePlayer(MovementEnum.Up);
+            VideoJames.Map.updateMap();
+            lblMap.Text = VideoJames.ToString();
+            lblHeroStats.Text = VideoJames.Map.Player.ToString();
+        }
+
+        private void btnDown_Click(object sender, EventArgs e)
+        {
+            VideoJames.MovePlayer(MovementEnum.Down);
+            VideoJames.Map.updateMap();
+            lblMap.Text = VideoJames.ToString();
+            lblHeroStats.Text = VideoJames.Map.Player.ToString();
+        }
+
+        private void btnRight_Click(object sender, EventArgs e)
+        {
+            VideoJames.MovePlayer(MovementEnum.Right);
+            VideoJames.Map.updateMap();
+            lblMap.Text = VideoJames.ToString();
+            lblHeroStats.Text = VideoJames.Map.Player.ToString();
+        }
+
+        private void btnLeft_Click(object sender, EventArgs e)
+        {
+            VideoJames.MovePlayer(MovementEnum.Left);
+            VideoJames.Map.updateMap();
+            lblMap.Text = VideoJames.ToString();
+            lblHeroStats.Text = VideoJames.Map.Player.ToString();
+        }
     }
 }

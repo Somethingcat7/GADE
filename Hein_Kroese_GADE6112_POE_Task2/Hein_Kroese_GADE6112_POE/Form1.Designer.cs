@@ -109,6 +109,7 @@ namespace Hein_Kroese_GADE6112_POE
             this.btnUp.TabIndex = 5;
             this.btnUp.Text = "^";
             this.btnUp.UseVisualStyleBackColor = true;
+            this.btnUp.Click += new System.EventHandler(this.btnUp_Click);
             // 
             // btnDown
             // 
@@ -119,6 +120,7 @@ namespace Hein_Kroese_GADE6112_POE
             this.btnDown.TabIndex = 6;
             this.btnDown.Text = "v";
             this.btnDown.UseVisualStyleBackColor = true;
+            this.btnDown.Click += new System.EventHandler(this.btnDown_Click);
             // 
             // btnRight
             // 
@@ -129,6 +131,7 @@ namespace Hein_Kroese_GADE6112_POE
             this.btnRight.TabIndex = 7;
             this.btnRight.Text = ">";
             this.btnRight.UseVisualStyleBackColor = true;
+            this.btnRight.Click += new System.EventHandler(this.btnRight_Click);
             // 
             // btnLeft
             // 
@@ -139,6 +142,7 @@ namespace Hein_Kroese_GADE6112_POE
             this.btnLeft.TabIndex = 8;
             this.btnLeft.Text = "<";
             this.btnLeft.UseVisualStyleBackColor = true;
+            this.btnLeft.Click += new System.EventHandler(this.btnLeft_Click);
             // 
             // btnAttack
             // 

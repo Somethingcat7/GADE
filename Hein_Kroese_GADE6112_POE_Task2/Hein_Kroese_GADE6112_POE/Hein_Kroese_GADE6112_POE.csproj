@@ -47,6 +47,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Character.cs" />
+    <Compile Include="MeleeWeapon.cs" />
+    <Compile Include="RangedWeapon.cs" />
+    <Compile Include="Weapons.cs" />
     <Compile Include="Enums.cs" />
     <Compile Include="Mage.cs" />
     <Compile Include="Gold.cs" />

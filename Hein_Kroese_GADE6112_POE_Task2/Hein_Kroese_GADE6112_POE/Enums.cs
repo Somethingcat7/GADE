@@ -27,5 +27,11 @@ namespace Hein_Kroese_GADE6112_POE
             Right,
             None
         }
+
+        public enum WeaponTypes
+        {
+            Dagger,
+            Longsword
+        }
     }
 

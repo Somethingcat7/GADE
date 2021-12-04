@@ -9,18 +9,10 @@ namespace Hein_Kroese_GADE6112_POE
 {
     class GameEngine
     {
-        //Charactermachurs
-        private static char HeroBoi = 'H';
-        private static char EmptySpace = '.';
-        private static char Obsticle = 'X';
-        private static char GoblinyBoi = 'G';
-        private static char Magewage = 'M';
-        private static char MONEY = 'I';
         private string MapString = String.Empty;
 
         
         private Map map;
-
         public Map Map { set { map = value; } get { return map; } }
 
 
@@ -91,66 +83,11 @@ namespace Hein_Kroese_GADE6112_POE
         //It does all of the things :D
         public override string ToString()
         {
-            string MapStringy = string.Empty;
-            char[,] MapChar = new char[map.Width, map.Height];
-
-            for (int i = 0; i < map.Width; i++)
-            {
-                for (int j = 0; j < map.Height; j++)
-                {
-                    if (map.Tilemappy[i, j].GetType() == typeof(Obstacle))
-                    {
-                        MapChar[i, j] = Obsticle;
-                    }
-                    
-                    if (map.Tilemappy[i,j].GetType() == typeof(Gold))
-                    {
-                        MapChar[i, j] = MONEY;
-                    }
-
-                    if (map.Tilemappy[i, j].GetType() == typeof(Hero))
-                    {
-                        MapChar[i, j] = HeroBoi;
-                    }
-
-                    if (map.Tilemappy[i, j].GetType() == typeof(EmptyTile))
-                    {
-                        MapChar[i, j] = EmptySpace;
-                    }
-                    
-                    if (map.Tilemappy[i, j].GetType() == typeof(Goblin))
-                    {
-                        MapChar[i, j] = GoblinyBoi;
-                    }
-
-                    if (map.Tilemappy[i, j].GetType() == typeof(Mage))
-                    {
-                        MapChar[i, j] = Magewage;
-                    }
-
-                    MapStringy += MapChar[i, j];
-                }
-                MapStringy += "\n";
-            }
-            return $"{MapStringy}";
-            
-
+            return map.redraw();         
         }
 
         //Redraw the map
-        public string redraw()
-        {
-            string output = "";
-            for (int y = 0; y < Map.Tilemappy.GetLength(1); y++)
-            {
-                for (int x = 0; x < Map.Tilemappy.GetLength(0); x++)
-                {
-                    output += Map.Tilemappy[x, y].getsymbol;
-                }
-                output += '\n';
-            }
-            return output;
-        }
+       
 
         public static void SaveGame(string Map)
         {

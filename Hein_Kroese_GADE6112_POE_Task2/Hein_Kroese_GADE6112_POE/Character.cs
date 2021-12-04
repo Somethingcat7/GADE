@@ -13,7 +13,7 @@ namespace Hein_Kroese_GADE6112_POE
         protected int Damage;
         protected int GoldAmount;
         protected string TileTyping;
-        private Tile[] vision;
+        public Tile[] vision = new Tile[4];
         private MovementEnum movement;
 
         //Accessor for variables Health, MaxHealth, Damage, Tile Type, Vision and Movement
@@ -102,16 +102,16 @@ namespace Hein_Kroese_GADE6112_POE
             switch (move)
             {
                 case MovementEnum.Up:
-                    gety -= 1;
+                    gety = gety - 1;
                     break;
                 case MovementEnum.Down:
-                    gety += 1;
+                    gety = gety + 1;
                     break;
                 case MovementEnum.Left:
-                    getx -= 1;
+                    getx = getx - 1;
                     break;
                 case MovementEnum.Right:
-                   getx += 1;
+                   getx = getx + 1;
                     break;
                 case MovementEnum.None:
                     break;

@@ -72,12 +72,16 @@ namespace Hein_Kroese_GADE6112_POE
         public void updateMap()
         {
             FillMap();
+            
             theMap[Player.getx, Player.gety] = Player;
             
             for (int i = 0; i < arrayofenemies.Length; i ++)
             {
                 theMap[arrayofenemies[i].getx, arrayofenemies[i].gety] = arrayofenemies[i];
             }
+           
+            Addgold();
+           
             for (int j = 0; j < Itemythings.Length; j++)
             {
                 theMap[Itemythings[j].getx,Itemythings[j].gety] = Itemythings[j];
@@ -179,19 +183,19 @@ namespace Hein_Kroese_GADE6112_POE
         }
         //Improve your eyes stupid
         public void UpdateVision()
-        {
-            /*player.Vision[0] = theMap[player.getx - 1, player.gety];
-            player.Vision[1] = theMap[player.getx + 1, player.gety];
-            player.Vision[1] = theMap[player.getx, player.gety - 1];
-            player.Vision[1] = theMap[player.getx, player.gety + 1];*/
-
+        {   
             foreach (Enemy enemy in arrayofenemies)
             {
-                /*enemy.Vision[0] = theMap[enemy.getx - 1, enemy.gety];
+                enemy.Vision[0] = theMap[enemy.getx - 1, enemy.gety];
                 enemy.Vision[1] = theMap[enemy.getx + 1, enemy.gety];
                 enemy.Vision[2] = theMap[enemy.getx, enemy.gety - 1];
-                enemy.Vision[3] = theMap[enemy.getx, enemy.gety + 1];*/
+                enemy.Vision[3] = theMap[enemy.getx, enemy.gety + 1];
             }
+
+            Player.Vision[0] = theMap[Player.getx, Player.gety - 1];
+            Player.Vision[1] = theMap[Player.getx, Player.gety + 1];
+            Player.Vision[2] = theMap[Player.getx + 1, Player.gety];
+            Player.Vision[3] = theMap[Player.getx - 1, Player.gety];
 
         }
         //MAKE MAP YOU DUMB DUMB
@@ -218,6 +222,18 @@ namespace Hein_Kroese_GADE6112_POE
 
         }
 
+        private void Addgold()
+        {
+            for (int i = 0; i < Itemythings.Length; i++)
+            {
+                if (Mappymap[Player.getx, Player.gety] == Mappymap[Itemythings[i].getx, Itemythings[i].gety])
+                {
+                    Player.Pickup(GetItemAtPosition(Player.getx, Player.gety));
+                }
+            }
+
+        }
+
         public Item GetItemAtPosition(int x, int y)
         {
             for (int i = 0; i < theMap.GetLength(0); i++)
@@ -236,6 +252,19 @@ namespace Hein_Kroese_GADE6112_POE
             }
 
             return item;
+        }
+        public string redraw()
+        {
+            string output = "";
+            for (int y = 0; y < theMap.GetLength(1); y++)
+            {
+                for (int x = 0; x < theMap.GetLength(0); x++)
+                {
+                    output += theMap[x, y].getsymbol;
+                }
+                output += '\n';
+            }
+            return output;
         }
     }
 }
