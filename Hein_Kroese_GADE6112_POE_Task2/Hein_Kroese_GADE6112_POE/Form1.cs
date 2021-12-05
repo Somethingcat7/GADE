@@ -24,7 +24,7 @@ namespace Hein_Kroese_GADE6112_POE
         {
            lblMap.Text = VideoJames.ToString();
            lblHeroStats.Text = VideoJames.Map.Player.ToString();
-            /* lblEnemy.Text = VideoJames.MappyGurl.Gobolobolin.ToString();*/
+         //lblEnemy.Text = VideoJames.Map.Gobolobolin.ToString();
         }
 
         private void lblMap_Click(object sender, EventArgs e)
@@ -53,6 +53,7 @@ namespace Hein_Kroese_GADE6112_POE
             VideoJames.Map.updateMap();
             lblMap.Text = VideoJames.ToString();
             lblHeroStats.Text = VideoJames.Map.Player.ToString();
+            
         }
 
         private void btnDown_Click(object sender, EventArgs e)

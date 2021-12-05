@@ -25,19 +25,22 @@ namespace Hein_Kroese_GADE6112_POE
         public Tile[] Vision { set { vision = value; } get { return vision; } }
         public MovementEnum MOVEMENT {set { movement = value; } get { return movement; }}
 
-        /*private int distanceTo() 
-        { 
-
-        }*/
+        private int distanceTo(Character character) 
+        {
+            int num = x + y;
+            int num2 = character.x + character.y;
+            int num3 = Math.Abs(num - num2);
+            return num3;
+        }
 
         //Set values for variables
-        protected Character(int x, int y, TileType tiletype, char symbol, int health, int maxHealth, int damage) : base(x, y, symbol)
+        public Character(int x, int y, TileType tile_type, char symbol, int health, int maxHealth, int damage, int goldAmount) : base(x, y, tile_type, symbol)
         {
-            this.Health = health;
-            this.MaxHealth = maxHealth;
-            this.Damage = damage;
-
-            
+            Health = health;
+            MaxHealth = maxHealth;
+            Damage = damage;
+            GoldAmount = goldAmount;
+                       
         }
 
         //Method for character attack
@@ -65,18 +68,15 @@ namespace Hein_Kroese_GADE6112_POE
         
         private int DistanceTo(Character Target)
         {
-            int calcDistance(int origin, int destination)
-            {
-                int distance = destination - origin;
-                return Math.Abs(distance);
-            }
-
-            return (calcDistance(this.x, Target.x) + calcDistance(this.y, Target.y));
+            int num = x + y;
+            int num2 = Target.x + Target.y;
+            int num3 = Math.Abs(num - num2);
+            return num3;
         }
 
         public virtual bool CheckRange(Character Target)
         { 
-            if (DistanceTo(Target) == 1)
+            if (DistanceTo(Target) > 1)
             {
                 return true;
             }
@@ -94,7 +94,8 @@ namespace Hein_Kroese_GADE6112_POE
 
         public void Pickup(Item i)
         {
-           
+            Gold gold = (Gold)i;
+            GoldAmount = GoldAmount + gold.GoldValue;
         }
 
         public void Move(MovementEnum move)
@@ -102,18 +103,18 @@ namespace Hein_Kroese_GADE6112_POE
             switch (move)
             {
                 case MovementEnum.Up:
-                    gety = gety - 1;
+                    y = y - 1;
                     break;
                 case MovementEnum.Down:
-                    gety = gety + 1;
+                    y = y + 1;
                     break;
                 case MovementEnum.Left:
-                    getx = getx - 1;
+                    x = x - 1;
                     break;
                 case MovementEnum.Right:
-                   getx = getx + 1;
+                   x = x + 1;
                     break;
-                case MovementEnum.None:
+                case MovementEnum.NoMovement:
                     break;
             }
         }

@@ -15,7 +15,9 @@ namespace Hein_Kroese_GADE6112_POE
             Enemy,
             Gold,
             Item,
+            Weapon,
             Obstacle,
+            Shop,
             Empty
         }
         //Movements
@@ -25,13 +27,16 @@ namespace Hein_Kroese_GADE6112_POE
             Down,
             Left,
             Right,
-            None
+            NoMovement
         }
 
         public enum WeaponTypes
         {
             Dagger,
-            Longsword
+            Longsword,
+            Rifle,
+            LongBow,
+            BareHands
         }
     }
 

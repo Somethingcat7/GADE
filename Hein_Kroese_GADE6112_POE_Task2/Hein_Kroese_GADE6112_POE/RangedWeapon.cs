@@ -8,9 +8,12 @@ namespace Hein_Kroese_GADE6112_POE
 {
     class RangedWeapon : Weapon
     {   public enum Weapons { Rifle, Longbow}
-        protected RangedWeapon(int x, int y, char symbol) : base(x, y, symbol)
+
+        public override int getRange { get { return 1; } }
+
+        public RangedWeapon(Weapons types,int x = 0, int y = 0) : base(x, y, 'W')
         {
-            if (Type == "Rifle")
+            if (types == Weapons.Rifle)
             {
                 Damage = 5;
                 Durability = 3;

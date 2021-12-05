@@ -9,10 +9,10 @@ namespace Hein_Kroese_GADE6112_POE
     //Subclass Player to class Character
     class Hero : Character
     {
-        
-        public Hero(int x, int y) : base(x, y,TileType.Hero,'H', 2, 10,10)
+
+        public Hero(int x, int y) : base(x, y, TileType.Hero, 'H', 2, 10, 10, 0)
         {
-           
+
         }
 
         public override void Attack(Character target)
@@ -20,9 +20,9 @@ namespace Hein_Kroese_GADE6112_POE
             target.gethealth = target.gethealth - 5;
         }
 
-        public override MovementEnum ReturnMove(MovementEnum move = MovementEnum.None)
+        public override MovementEnum ReturnMove(MovementEnum move = MovementEnum.NoMovement)
         {
-            return MovementEnum.None;
+            return MovementEnum.NoMovement;
         }
 
         public override string ToString()
@@ -37,70 +37,42 @@ namespace Hein_Kroese_GADE6112_POE
 
         bool CheckValidMove(MovementEnum Charactermove)
         {
-            bool IsValid = false;
-
-            switch (Charactermove)
             {
-                case MovementEnum.Right:
-                    foreach (Tile T in Vision)
-                    { 
-                        if (T.getx == x + 1)
-                        {
-                            if (T.Tiletyping ==TileType.Empty)
-                            {
-                                IsValid = true;
-                                break;
-                            }
-                        }
-                    }
-                    break;
+                bool valid = false;
 
-                case MovementEnum.Left:
-                    foreach (Tile T in Vision)
-                    {
-                        if (T.getx == x + 1)
+                switch (Charactermove)
+                {
+                    case MovementEnum.Right:
+                        if (vision[2].GetType() == typeof(EmptyTile) || vision[2].GetType() == typeof(Gold))
                         {
-                            if (T.Tiletyping == TileType.Empty)
-                            {
-                                IsValid = true;
-                                break;
-                            }
+                            valid = true;
+                            break;
                         }
-                    }
-                    break;
-
-                case MovementEnum.Up:
-                    foreach (Tile T in Vision)
-                    {
-                        if (T.getx == x + 1)
+                        break;
+                    case MovementEnum.Left:
+                        if (vision[3].GetType() == typeof(EmptyTile) || vision[3].GetType() == typeof(Gold))
                         {
-                            if (T.Tiletyping == TileType.Empty)
-                            {
-                                IsValid = true;
-                                break;
-                            }
+                            valid = true;
+                            break;
                         }
-                    }
-                    break;
-
-                case MovementEnum.Down:
-                    foreach (Tile T in Vision)
-                    {
-                        if (T.getx == x + 1)
+                        break;
+                    case MovementEnum.Down:
+                        if (vision[1].GetType() == typeof(EmptyTile) || vision[1].GetType() == typeof(Gold))
                         {
-                            if (T.Tiletyping == TileType.Empty)
-                            {
-                                IsValid = true;
-                                break;
-                            }
+                            valid = true;
+                            break;
                         }
-                    }
-                    break;
-
-                    
+                        break;
+                    case MovementEnum.Up:
+                        if (vision[0].GetType() == typeof(EmptyTile) || vision[0].GetType() == typeof(Gold))
+                        {
+                            valid = true;
+                            break;
+                        }
+                        break;
+                }
+                return valid;
             }
-            
-            return IsValid;
         }
     }
 }

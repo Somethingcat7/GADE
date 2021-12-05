@@ -7,10 +7,14 @@ using System.Threading.Tasks;
 namespace Hein_Kroese_GADE6112_POE
 {
     class MeleeWeapon : Weapon
-    {   public enum Weapons { Dagger, Longsword} 
-        protected MeleeWeapon(int x, int y, char symbol) : base(x,y,symbol)
+    { public enum Weapons { Dagger, Longsword }
+
+        public override int getRange { get { return 1; } }
+
+        public MeleeWeapon( Weapons types, int x = 0, int y = 0) : base(x, y, 'W')
         {
-            if (Type == "Dagger")
+
+            if (types == Weapons.Dagger)
             {
                 Damage = 3;
                 Durability = 10;
@@ -23,10 +27,12 @@ namespace Hein_Kroese_GADE6112_POE
                 Cost = 5;
             }
         }
-
+        
         public override string ToString()
         {
             throw new NotImplementedException();
         }
+
+        
     }
 }

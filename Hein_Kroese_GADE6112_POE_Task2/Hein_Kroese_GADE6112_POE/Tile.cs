@@ -11,17 +11,19 @@ namespace Hein_Kroese_GADE6112_POE
         protected int x;
         protected int y;
         protected char symbol;
+        protected TileType TypeOfTile;
         //Accessors for x, y and symbol
         public int getx { set { x = value; } get { return x; } }
         public int gety { set { y = value; } get { return y; } }
         public char getsymbol { set { symbol = value; } get { return symbol; } }
         public TileType Tiletyping { set { Tiletyping = value; } get { return Tiletyping; } }
               
-        protected Tile(int x, int y ,char symbol)
+        protected Tile(int X, int Y, TileType tile_type, char Symbol)
         {
-            this.x = x;
-            this.y = y;
-            this.symbol = symbol;
+            x = X;
+            y = Y;
+            symbol = Symbol;
+            TypeOfTile = tile_type;
         }
 
              

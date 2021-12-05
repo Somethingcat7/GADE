@@ -8,7 +8,7 @@ namespace Hein_Kroese_GADE6112_POE
 {
     abstract class Weapon : Item
     {
-        protected Weapon(int x, int y, char symbol) : base(x, y, symbol)
+        protected Weapon(int x, int y, char symbol) : base(x, y, TileType.Weapon ,symbol)
         {
 
         }
@@ -20,7 +20,7 @@ namespace Hein_Kroese_GADE6112_POE
         protected string Type;
 
         public int getDamage { set { Damage = value; } get { return Damage; } }
-        public int getRange { set { Range = value; } get { return Range; } }
+        public virtual int getRange { set { Range = value; } get { return Range; } }
         public int getCost { set { Cost = value; } get { return Cost; } }
         public string getType { set { Type = value; } get { return Type; } }
         public int getDurability { set { Durability = value; } get { return Durability; } }

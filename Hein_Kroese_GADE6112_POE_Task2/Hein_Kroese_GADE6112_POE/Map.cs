@@ -29,6 +29,7 @@ namespace Hein_Kroese_GADE6112_POE
         public Tile[,] theMap;
         public Enemy[] arrayofenemies;
         public Item[] Itemythings;
+        public Weapon[] weapons;
         
         //Player Variable
         private Hero player;
@@ -37,7 +38,7 @@ namespace Hein_Kroese_GADE6112_POE
         //Random number generator
         private Random RanDumb = new Random();
 
-        public Map(int MinHeight, int MinWidth, int MaxHeight, int MaxWidth, int NumEnemies, int NumGold)
+        public Map(int MinHeight, int MinWidth, int MaxHeight, int MaxWidth, int NumEnemies, int NumGold, int NumWeapons)
         {   
             Random RanDum = new Random();
             
@@ -45,9 +46,10 @@ namespace Hein_Kroese_GADE6112_POE
             mapWide = RanDum.Next(MinWidth, MaxWidth + 1);
 
             theMap = new Tile[mapWide,mapLong];
-
-            arrayofenemies = new Enemy[enemynumber];
+            //Declare length of arrays
+            arrayofenemies = new Enemy[NumEnemies];
             Itemythings = new Item[NumGold];
+            weapons = new Weapon[NumWeapons];
 
             FillMap();
 
@@ -63,6 +65,12 @@ namespace Hein_Kroese_GADE6112_POE
             for (int i = 0; i < Itemythings.Length; i++)
             {
                 Itemythings[i] = (Gold)create(TileType.Gold);
+                theMap[Itemythings[i].getx, Itemythings[i].gety] = Itemythings[i];
+            }
+
+            for (int i = 0; i < weapons.Length; i++)
+            {
+                Itemythings[i] = (MeleeWeapon)create(TileType.Weapon);
                 theMap[Itemythings[i].getx, Itemythings[i].gety] = Itemythings[i];
             }
 
@@ -100,8 +108,6 @@ namespace Hein_Kroese_GADE6112_POE
             int RNGY;
             int EnemType;
 
-            
-
             bool IsTileOpen(int x, int y)
             {
                 if (theMap[x,y].GetType() != typeof(EmptyTile))
@@ -119,8 +125,8 @@ namespace Hein_Kroese_GADE6112_POE
                 case TileType.Hero:
                     do
                     {
-                        RNGX = RanDum.Next(1, theMap.GetLength(0));
-                        RNGY = RanDum.Next(1, theMap.GetLength(1));
+                        RNGX = RanDum.Next(0, theMap.GetLength(0));
+                        RNGY = RanDum.Next(0, theMap.GetLength(1));
                     } while (IsTileOpen(RNGX,RNGY));
 
                     return new Hero(RNGX, RNGY);
@@ -128,48 +134,41 @@ namespace Hein_Kroese_GADE6112_POE
                 case TileType.Enemy:
                     do
                     {
-                        RNGX = RanDum.Next(1, theMap.GetLength(0));
-                        RNGY = RanDum.Next(1, theMap.GetLength(1));
-                        EnemType = RanDum.Next(0, 2);
+                        RNGX = RanDum.Next(0, theMap.GetLength(0));
+                        RNGY = RanDum.Next(0, theMap.GetLength(1));
+                        EnemType = RanDum.Next(0, 3);
                     } while (IsTileOpen(RNGX, RNGY));
 
                     if (EnemType == 0)
                     {
                         return new Goblin(RNGX, RNGY);
                     }
-                    else
+                    else if(EnemType == 1)
                     {
                         return new Mage(RNGX, RNGY);
+                    }
+                    else
+                    {
+                        return new Leader(RNGX, RNGY);
                     }
                 case TileType.Gold:
                     do
                     {
-                        RNGX = RanDum.Next(1, theMap.GetLength(0));
-                        RNGY = RanDum.Next(1, theMap.GetLength(1));
+                        RNGX = RanDum.Next(0, theMap.GetLength(0));
+                        RNGY = RanDum.Next(0, theMap.GetLength(1));
                     } while (IsTileOpen(RNGX, RNGY));
 
-                    return new Gold(RNGX,RNGY);
-/*
-                case Tile.TileType.Item:
+                    return new Gold(RNGX,RNGY, TileType.Gold);
+
+                case TileType.Weapon:
                     do
                     {
-                        RNGX = RanDum.Next(1, theMap.GetLength(0));
-                        RNGY = RanDum.Next(1, theMap.GetLength(1));
+                        RNGX = RanDum.Next(0, theMap.GetLength(0));
+                        RNGY = RanDum.Next(0, theMap.GetLength(1));
                     } while (IsTileOpen(RNGX, RNGY));
-                    return new Item(RNGX, RNGY);
-*/
-                /* case Tile.TileType.Obstacle:
-                     return new Obstacle();
 
-                 case Tile.TileType.Empty:
-                     return new EmptyTile();
-
-                 case Tile.TileType.Gold:
-                     return new "Gold"
-
-                 case Tile.TileType.Weapon:
-                     return new "Weapon"
-                      */
+                    return new MeleeWeapon(MeleeWeapon.Weapons.Dagger);
+                
 
                 default:
                  return null;
@@ -177,14 +176,10 @@ namespace Hein_Kroese_GADE6112_POE
         
         }
 
-        public override string ToString()
-        {
-            return null;              
-        }
         //Improve your eyes stupid
         public void UpdateVision()
         {   
-            foreach (Enemy enemy in arrayofenemies)
+          foreach (Enemy enemy in arrayofenemies)
             {
                 enemy.Vision[0] = theMap[enemy.getx - 1, enemy.gety];
                 enemy.Vision[1] = theMap[enemy.getx + 1, enemy.gety];
@@ -205,7 +200,7 @@ namespace Hein_Kroese_GADE6112_POE
             {
                 for (int j = 0; j < theMap.GetLength(1); j++)
                 {
-                    theMap[i, j] = new EmptyTile(i, j,'.');
+                    theMap[i, j] = new EmptyTile(i, j,TileType.Empty);
                 }
             }
 
@@ -215,7 +210,7 @@ namespace Hein_Kroese_GADE6112_POE
                 {
                    if (i == 0 || j == 0|| i == mapWide - 1 || j == mapLong - 1)
                     {
-                        theMap[i, j] = new Obstacle(i,j,'X');
+                        theMap[i, j] = new Obstacle(i,j, TileType.Empty);
                     }
                 }
             }

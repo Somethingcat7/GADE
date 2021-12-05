@@ -16,11 +16,12 @@ namespace Hein_Kroese_GADE6112_POE
             return RanDum.Next(min,max);
         }*/
 
-        private int GoldValue { set { goldvalue = value; } get { return goldvalue; } }
+        public int GoldValue { set { goldvalue = value; } get { return goldvalue; } }
         
-        public Gold(int x, int y): base (x,y,'S')
+        public Gold(int x, int y, TileType tile_type) : base(x, y, tile_type, '$')
         {
             goldvalue = RanDum.Next(1, 6);
+          
         }
 
         public override string ToString()

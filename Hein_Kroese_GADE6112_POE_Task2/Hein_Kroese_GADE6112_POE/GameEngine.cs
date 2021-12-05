@@ -9,16 +9,17 @@ namespace Hein_Kroese_GADE6112_POE
 {
     class GameEngine
     {
-        private string MapString = String.Empty;
+        //private string MapString = String.Empty;
 
         
         private Map map;
         public Map Map { set { map = value; } get { return map; } }
 
+        private Shop shop;
 
         public GameEngine()
         {
-            map = new Map(10, 14, 10, 14, 6, 3);
+            map = new Map(10, 14, 10, 14, 6, 3, 2);
         }
         //Player doing a movement
         public void MovePlayer(MovementEnum motion)
