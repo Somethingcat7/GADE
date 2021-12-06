@@ -8,7 +8,7 @@ namespace Hein_Kroese_GADE6112_POE
 {
     class Mage : Enemy 
     {   //Mage constructor
-        public Mage(int x, int y) : base(x, y, TileType.Enemy, 'M', 5, 5, 5, 0)
+        public Mage(int x, int y) : base(x, y, TileType.Enemy, 'M', 5, 5, 5, 3)
         {
 
         }

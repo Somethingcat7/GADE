@@ -8,9 +8,10 @@ namespace Hein_Kroese_GADE6112_POE
 {
     class Leader : Enemy
     {
-        Hero hero = new Hero(10, 5);
-       
-        public Leader(int x, int y) : base(x, y, TileType.Enemy, 'L', 20, 20, 2, 0)
+
+        Hero hero = new Hero(1,1);
+
+        public Leader(int x, int y) : base(x, y, TileType.Enemy, 'L', 20, 20, 2, 2)
         {
           
         }
@@ -59,11 +60,11 @@ namespace Hein_Kroese_GADE6112_POE
         {
             if (CheckValidMove(move))
             {
-                
                 if (x > hero.getx)
-            {
-                return MovementEnum.Left;
-            }
+                {
+                    return MovementEnum.Left;
+                }
+
             else if (x < hero.getx)
             {
                 return MovementEnum.Right;
@@ -80,10 +81,10 @@ namespace Hein_Kroese_GADE6112_POE
             {
                 return MovementEnum.NoMovement;
             }   
+           
             }
-            else return MovementEnum.NoMovement;
-
-            
+           else return MovementEnum.NoMovement;
+ 
         }
 
     }

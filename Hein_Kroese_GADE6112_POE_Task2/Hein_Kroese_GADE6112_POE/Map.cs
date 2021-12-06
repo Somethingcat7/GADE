@@ -61,7 +61,7 @@ namespace Hein_Kroese_GADE6112_POE
                 arrayofenemies[i] = (Enemy)create(TileType.Enemy);
                 theMap[arrayofenemies[i].getx, arrayofenemies[i].gety] = arrayofenemies[i];
             }
-            
+
             for (int i = 0; i < Itemythings.Length; i++)
             {
                 Itemythings[i] = (Gold)create(TileType.Gold);
@@ -70,8 +70,8 @@ namespace Hein_Kroese_GADE6112_POE
 
             for (int i = 0; i < weapons.Length; i++)
             {
-             Itemythings[i] = (MeleeWeapon)create(TileType.Weapon);
-             theMap[Itemythings[i].getx, Itemythings[i].gety] = Itemythings[i];
+                Itemythings[i] = (MeleeWeapon)create(TileType.Weapon);
+                theMap[Itemythings[i].getx, Itemythings[i].gety] = Itemythings[i];
             }
 
             UpdateVision();
@@ -89,6 +89,7 @@ namespace Hein_Kroese_GADE6112_POE
             }
            
             Addgold();
+            AddWeapon();
            
             for (int j = 0; j < Itemythings.Length; j++)
             {
@@ -179,17 +180,17 @@ namespace Hein_Kroese_GADE6112_POE
         public void UpdateVision()
         {   
           foreach (Enemy enemy in arrayofenemies)
-            {
-                enemy.Vision[0] = theMap[enemy.getx, enemy.gety - 1];
-                enemy.Vision[1] = theMap[enemy.getx, enemy.gety + 1];
-                enemy.Vision[2] = theMap[enemy.getx + 1, enemy.gety];
-                enemy.Vision[3] = theMap[enemy.getx - 1, enemy.gety];
-            }
+          {
+            enemy.Vision[0] = theMap[enemy.getx, enemy.gety - 1];
+            enemy.Vision[1] = theMap[enemy.getx, enemy.gety + 1];
+            enemy.Vision[2] = theMap[enemy.getx + 1, enemy.gety];
+            enemy.Vision[3] = theMap[enemy.getx - 1, enemy.gety];
+          }
 
-            Player.Vision[0] = theMap[Player.getx, Player.gety - 1];
-            Player.Vision[1] = theMap[Player.getx, Player.gety + 1];
-            Player.Vision[2] = theMap[Player.getx + 1, Player.gety];
-            Player.Vision[3] = theMap[Player.getx - 1, Player.gety];
+           Player.Vision[0] = theMap[Player.getx, Player.gety - 1];
+           Player.Vision[1] = theMap[Player.getx, Player.gety + 1];
+           Player.Vision[2] = theMap[Player.getx + 1, Player.gety];
+           Player.Vision[3] = theMap[Player.getx - 1, Player.gety];
 
         }
         //MAKE MAP YOU DUMB DUMB
@@ -228,6 +229,17 @@ namespace Hein_Kroese_GADE6112_POE
 
         }
 
+        private void AddWeapon()
+        {
+            for (int i = 0; i < Itemythings.Length; i++)
+            {
+                if (Mappymap[Player.getx, Player.gety] == Mappymap[Itemythings[i].getx, Itemythings[i].gety])
+                {
+                    Player.Pickup(GetItemAtPosition(Player.getx, Player.gety));
+                }
+            }
+        }
+
         public Item GetItemAtPosition(int x, int y)
         {
             Item output = null;
@@ -237,16 +249,13 @@ namespace Hein_Kroese_GADE6112_POE
                 {
                     output = Itemythings[i];
                     Itemythings[i] = null;
-                    Itemythings = Itemythings.Where(j => i != null).ToArray();
-                    
+                    Itemythings = Itemythings.Where((source, index) => index != i).ToArray();
                 }
-
-                if (x == Itemythings[i].getx && y == Itemythings[i].gety && Itemythings[i].Tiletyping == TileType.Weapon)
+                else if (x == Itemythings[i].getx && y == Itemythings[i].gety && Itemythings[i].Tiletyping == TileType.Weapon)
                 {
                     output = Itemythings[i];
                     Itemythings[i] = null;
-                    Itemythings = Itemythings.Where(j => i != null).ToArray();
-
+                    Itemythings = Itemythings.Where((source, index) => index != i).ToArray();
                 }
             }
             return output;

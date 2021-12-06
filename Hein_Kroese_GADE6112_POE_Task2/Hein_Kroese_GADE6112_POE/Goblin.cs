@@ -9,7 +9,7 @@ namespace Hein_Kroese_GADE6112_POE
     //Subclass Goblin to class Enemy
     class Goblin : Enemy
     {
-        public Goblin(int x, int y) : base(x, y,TileType.Enemy, 'G', 5, 5, 2, 0)
+        public Goblin(int x, int y) : base(x, y,TileType.Enemy, 'G', 5, 5, 2, 1)
         {
      
         }
