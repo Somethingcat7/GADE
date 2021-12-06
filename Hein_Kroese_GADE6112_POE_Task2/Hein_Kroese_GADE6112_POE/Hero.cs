@@ -10,11 +10,11 @@ namespace Hein_Kroese_GADE6112_POE
     class Hero : Character
     {
 
-        public Hero(int x = 5, int y = 5) : base(x, y, TileType.Hero, 'H', 2, 10, 10, 0)
+        public Hero(int x, int y) : base(x, y, TileType.Hero, 'H', 10, 10, 10, 0)
         {
 
         }
-
+        public int getX {set { x = value; } get{ return x; } }
         public override void Attack(Character target)
         {
             target.gethealth = target.gethealth - 5;

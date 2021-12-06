@@ -8,12 +8,14 @@ namespace Hein_Kroese_GADE6112_POE
 {
     class Leader : Enemy
     {
-        Hero hero = new Hero();
+        Hero hero = new Hero(10, 5);
        
         public Leader(int x, int y) : base(x, y, TileType.Enemy, 'L', 20, 20, 2, 0)
         {
           
         }
+        
+
         public bool CheckValidMove(MovementEnum Charactermove)
         {
             {
@@ -57,7 +59,8 @@ namespace Hein_Kroese_GADE6112_POE
         {
             if (CheckValidMove(move))
             {
-             if (x > hero.getx)
+                
+                if (x > hero.getx)
             {
                 return MovementEnum.Left;
             }

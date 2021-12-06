@@ -180,10 +180,10 @@ namespace Hein_Kroese_GADE6112_POE
         {   
           foreach (Enemy enemy in arrayofenemies)
             {
-                enemy.Vision[0] = theMap[enemy.getx - 1, enemy.gety];
-                enemy.Vision[1] = theMap[enemy.getx + 1, enemy.gety];
-                enemy.Vision[2] = theMap[enemy.getx, enemy.gety - 1];
-                enemy.Vision[3] = theMap[enemy.getx, enemy.gety + 1];
+                enemy.Vision[0] = theMap[enemy.getx, enemy.gety - 1];
+                enemy.Vision[1] = theMap[enemy.getx, enemy.gety + 1];
+                enemy.Vision[2] = theMap[enemy.getx + 1, enemy.gety];
+                enemy.Vision[3] = theMap[enemy.getx - 1, enemy.gety];
             }
 
             Player.Vision[0] = theMap[Player.getx, Player.gety - 1];
