@@ -10,7 +10,7 @@ namespace Hein_Kroese_GADE6112_POE
     class Hero : Character
     {
 
-        public Hero(int x, int y) : base(x, y, TileType.Hero, 'H', 2, 10, 10, 0)
+        public Hero(int x = 5, int y = 5) : base(x, y, TileType.Hero, 'H', 2, 10, 10, 0)
         {
 
         }
@@ -22,7 +22,11 @@ namespace Hein_Kroese_GADE6112_POE
 
         public override MovementEnum ReturnMove(MovementEnum move = MovementEnum.NoMovement)
         {
-            return MovementEnum.NoMovement;
+            if (CheckValidMove(move))
+            {
+                return move;
+            }
+            else return MovementEnum.NoMovement;
         }
 
         public override string ToString()
@@ -35,7 +39,7 @@ namespace Hein_Kroese_GADE6112_POE
             return Info;
         }
 
-        bool CheckValidMove(MovementEnum Charactermove)
+       public bool CheckValidMove(MovementEnum Charactermove)
         {
             {
                 bool valid = false;

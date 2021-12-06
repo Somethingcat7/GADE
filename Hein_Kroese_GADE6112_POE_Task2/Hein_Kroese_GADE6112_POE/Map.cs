@@ -70,8 +70,8 @@ namespace Hein_Kroese_GADE6112_POE
 
             for (int i = 0; i < weapons.Length; i++)
             {
-                Itemythings[i] = (MeleeWeapon)create(TileType.Weapon);
-                theMap[Itemythings[i].getx, Itemythings[i].gety] = Itemythings[i];
+             Itemythings[i] = (MeleeWeapon)create(TileType.Weapon);
+             theMap[Itemythings[i].getx, Itemythings[i].gety] = Itemythings[i];
             }
 
             UpdateVision();
@@ -166,12 +166,11 @@ namespace Hein_Kroese_GADE6112_POE
                         RNGX = RanDum.Next(0, theMap.GetLength(0));
                         RNGY = RanDum.Next(0, theMap.GetLength(1));
                     } while (IsTileOpen(RNGX, RNGY));
-
-                    return new MeleeWeapon(MeleeWeapon.Weapons.Dagger);
-                
+                                   
+                    return new MeleeWeapon(MeleeWeapon.Weapons.Dagger,RNGX,RNGY);
 
                 default:
-                 return null;
+                     return null;
             }
         
         }
@@ -209,9 +208,9 @@ namespace Hein_Kroese_GADE6112_POE
                 for (int j = 0; j < theMap.GetLength(1); j++)
                 {
                    if (i == 0 || j == 0|| i == mapWide - 1 || j == mapLong - 1)
-                    {
+                   {
                         theMap[i, j] = new Obstacle(i,j, TileType.Empty);
-                    }
+                   }
                 }
             }
 
@@ -231,22 +230,28 @@ namespace Hein_Kroese_GADE6112_POE
 
         public Item GetItemAtPosition(int x, int y)
         {
-            for (int i = 0; i < theMap.GetLength(0); i++)
+            Item output = null;
+            for (int i = 0; i < Itemythings.Length; i++)
             {
-                for (int j = 0; j < theMap.GetLength(1); j++)
+                if (x == Itemythings[i].getx && y == Itemythings[i].gety && Itemythings[i].Tiletyping == TileType.Gold)
                 {
-                    if (Itemythings[j] == item)
-                    {
-                        item = item;
-                    }
-                    else 
-                    {
-                        item = null;
-                    }
+                    output = Itemythings[i];
+                    Itemythings[i] = null;
+                    Itemythings = Itemythings.Where(j => i != null).ToArray();
+                    
+                }
+
+                if (x == Itemythings[i].getx && y == Itemythings[i].gety && Itemythings[i].Tiletyping == TileType.Weapon)
+                {
+                    output = Itemythings[i];
+                    Itemythings[i] = null;
+                    Itemythings = Itemythings.Where(j => i != null).ToArray();
+
                 }
             }
+            return output;
 
-            return item;
+        
         }
         public string redraw()
         {

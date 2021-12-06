@@ -24,18 +24,53 @@ namespace Hein_Kroese_GADE6112_POE
         {
             return RanNum.Next(min, max);
         }
-        
-       /* public Enemy(int x, int y,TileType tiletype ,char symbol, int health, int maxHealth, int damage) : base(x, y, tiletype, symbol, health, maxHealth, damage)
-        {
 
-        }*/
+        bool CheckValidMove(MovementEnum charactermove)
+        {
+            bool valid = false;
+
+            switch (charactermove)
+            {
+                case MovementEnum.Right:
+                    if (vision[2].GetType() == typeof(EmptyTile) || vision[2].GetType() == typeof(Gold))
+                    {
+                        valid = true;
+                        break;
+                    }
+                    break;
+                case MovementEnum.Left:
+                    if (vision[3].GetType() == typeof(EmptyTile) || vision[3].GetType() == typeof(Gold))
+                    {
+                        valid = true;
+                        break;
+                    }
+                    break;
+                case MovementEnum.Down:
+                    if (vision[1].GetType() == typeof(EmptyTile) || vision[1].GetType() == typeof(Gold))
+                    {
+                        valid = true;
+                        break;
+                    }
+                    break;
+                case MovementEnum.Up:
+                    if (vision[0].GetType() == typeof(EmptyTile) || vision[0].GetType() == typeof(Gold))
+                    {
+                        valid = true;
+                        break;
+                    }
+                    break;
+            }
+            return valid;
+        }
 
         public override MovementEnum ReturnMove(MovementEnum move = MovementEnum.NoMovement)
         {
-            return MovementEnum.NoMovement;
+            if (CheckValidMove(move))
+            {
+                return move;
+            }
+            else return MovementEnum.NoMovement;
         }
-
-        
 
         public override void Attack(Character target)
         {

@@ -50,6 +50,7 @@ namespace Hein_Kroese_GADE6112_POE
         private void btnUp_Click(object sender, EventArgs e)
         {
             VideoJames.MovePlayer(MovementEnum.Up);
+            VideoJames.MoveLeader(MovementEnum.Down);
             VideoJames.Map.updateMap();
             lblMap.Text = VideoJames.ToString();
             lblHeroStats.Text = VideoJames.Map.Player.ToString();
@@ -59,6 +60,7 @@ namespace Hein_Kroese_GADE6112_POE
         private void btnDown_Click(object sender, EventArgs e)
         {
             VideoJames.MovePlayer(MovementEnum.Down);
+            VideoJames.MoveLeader(MovementEnum.Up);
             VideoJames.Map.updateMap();
             lblMap.Text = VideoJames.ToString();
             lblHeroStats.Text = VideoJames.Map.Player.ToString();
@@ -67,6 +69,7 @@ namespace Hein_Kroese_GADE6112_POE
         private void btnRight_Click(object sender, EventArgs e)
         {
             VideoJames.MovePlayer(MovementEnum.Right);
+            VideoJames.MoveLeader(MovementEnum.Left);
             VideoJames.Map.updateMap();
             lblMap.Text = VideoJames.ToString();
             lblHeroStats.Text = VideoJames.Map.Player.ToString();
@@ -75,6 +78,7 @@ namespace Hein_Kroese_GADE6112_POE
         private void btnLeft_Click(object sender, EventArgs e)
         {
             VideoJames.MovePlayer(MovementEnum.Left);
+            VideoJames.MoveLeader(MovementEnum.Right);
             VideoJames.Map.updateMap();
             lblMap.Text = VideoJames.ToString();
             lblHeroStats.Text = VideoJames.Map.Player.ToString();

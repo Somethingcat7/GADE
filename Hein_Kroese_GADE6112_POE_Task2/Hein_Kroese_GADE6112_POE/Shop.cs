@@ -8,13 +8,36 @@ namespace Hein_Kroese_GADE6112_POE
 {
     class Shop
     {
-       
+
         public string[] weaponarray = new string[3];
+        public Character Buyer;
+        public Character buyer { set { value = Buyer; } get { return Buyer; } }
+        public Shop()
+        {
+            Buyer = new Hero(0,0);
+        }
 
         Random random = new Random();
-        public virtual void SoldItem(Character Buyer)
+        public void Buy(int num)
         {
-            Buyer.getGoldAmount -= 5;
+            num -= 5;
+        }
+
+        public bool CanBuy(int num)
+        {
+            if (Buyer.getGoldAmount < num)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public string DisplayWeapon(int num)
+        {
+            return "Buy Weapon type " + num.ToString();
         }
 
         public void FillShop()
@@ -50,9 +73,9 @@ namespace Hein_Kroese_GADE6112_POE
             switch (type)
             {
                 case 0:
-                    return new MeleeWeapon(MeleeWeapon.Weapons.Dagger);
+                    return new MeleeWeapon(MeleeWeapon.Weapons.Dagger,0,0);
                 case 1:
-                    return new MeleeWeapon(MeleeWeapon.Weapons.Longsword);
+                    return new MeleeWeapon(MeleeWeapon.Weapons.Longsword,0,0);
                 case 2:
                     return new RangedWeapon(RangedWeapon.Weapons.Rifle);
                 case 3:

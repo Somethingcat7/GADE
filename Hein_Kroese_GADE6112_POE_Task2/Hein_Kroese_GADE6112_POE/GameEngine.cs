@@ -19,7 +19,7 @@ namespace Hein_Kroese_GADE6112_POE
 
         public GameEngine()
         {
-            map = new Map(10, 14, 10, 14, 6, 3, 2);
+            map = new Map(10, 14, 10, 14, 6, 6, 3);
         }
         //Player doing a movement
         public void MovePlayer(MovementEnum motion)
@@ -49,6 +49,14 @@ namespace Hein_Kroese_GADE6112_POE
         }
         //Enemies doing a movement
         public void MoveEnemies(MovementEnum movement)
+        {
+            for (int i = 0; i < map.arrayofenemies.Length; i++)
+            {
+                map.arrayofenemies[i].Move(map.arrayofenemies[i].ReturnMove(movement));
+            }
+            EnemyAttack();
+        }
+        public void MoveLeader(MovementEnum movement)
         {
             for (int i = 0; i < map.arrayofenemies.Length; i++)
             {

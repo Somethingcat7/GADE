@@ -10,8 +10,9 @@ namespace Hein_Kroese_GADE6112_POE
     { public enum Weapons { Dagger, Longsword }
 
         public override int getRange { get { return 1; } }
+        Random Randumb = new Random();
 
-        public MeleeWeapon( Weapons types, int x = 0, int y = 0) : base(x, y, 'W')
+        public MeleeWeapon( Weapons types, int x, int y) : base(x, y, 'W')
         {
 
             if (types == Weapons.Dagger)
