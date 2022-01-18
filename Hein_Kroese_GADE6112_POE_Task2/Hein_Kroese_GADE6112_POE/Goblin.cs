@@ -9,21 +9,45 @@ namespace Hein_Kroese_GADE6112_POE
     //Subclass Goblin to class Enemy
     class Goblin : Enemy
     {
-        public Goblin(int x, int y, char symbol, int health, int maxHealth, int damage) : base(x, y, 'G', 10, 10, 1)
+        public Goblin(int x, int y) : base(x, y,TileType.Enemy, 'G', 5, 5, 2, 1)
         {
-            this.x = Coords(2, 15);
-            this.y = Coords(2, 15);
+     
         }
 
-        public override MovementEnum ReturnMove()
+        public override MovementEnum ReturnMove(MovementEnum move = MovementEnum.NoMovement)
         {
-            return MovementEnum.None;
+            int randomtileindex = RanNum.Next(0, Vision.Length);
+
+            while (Vision[randomtileindex].getsymbol.Equals(typeof(EmptyTile)))
+            {
+                randomtileindex = RanNum.Next(0, Vision.Length);
+            }
+
+            if (Vision[randomtileindex].getx > x)
+            {
+                return MovementEnum.Right;
+            }
+            else if (Vision[randomtileindex].getx < x)
+            {
+                return MovementEnum.Left;
+            }
+            else if (Vision[randomtileindex].gety < y)
+            {
+                return MovementEnum.Up;
+            }
+            else if (Vision[randomtileindex].gety > y)
+            {
+                return MovementEnum.Down;
+            }
+
+            return MovementEnum.NoMovement;
         }
 
         public override string ToString()
         {
             return "Goblin at: [" + x.ToString() + ", " + y.ToString() + "] " +  Damage.ToString();
         }
+
 
     }
 }

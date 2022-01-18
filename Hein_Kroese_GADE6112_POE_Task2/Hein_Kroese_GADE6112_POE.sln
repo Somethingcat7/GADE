@@ -5,6 +5,8 @@ VisualStudioVersion = 16.0.31019.35
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hein_Kroese_GADE6112_POE", "Hein_Kroese_GADE6112_POE\Hein_Kroese_GADE6112_POE.csproj", "{4FEDC529-6DA4-4522-AB59-1CD0F5FE14CC}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{7F0883A0-781A-4B38-8CA6-8DFFF8E6E2B9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

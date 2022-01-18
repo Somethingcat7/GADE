@@ -8,7 +8,7 @@ namespace Hein_Kroese_GADE6112_POE
 {
     class EmptyTile : Tile
     {
-        protected EmptyTile(int x, int y, char symbol) : base(x, y, symbol)
+        public EmptyTile(int x, int y, TileType tile_type) : base(x, y, tile_type, '.')
         {
             
         }

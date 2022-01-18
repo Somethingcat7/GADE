@@ -6,40 +6,18 @@ using System.Threading.Tasks;
 
 namespace Hein_Kroese_GADE6112_POE
 {
-    //Subclass Player to class Character
-    class Hero : Character
+    class Leader : Enemy
     {
 
-        public Hero(int x, int y) : base(x, y, TileType.Hero, 'H', 10, 10, 10, 0)
-        {
+        Hero hero = new Hero(1,1);
 
-        }
-        public int getX {set { x = value; } get{ return x; } }
-        public override void Attack(Character target)
+        public Leader(int x, int y) : base(x, y, TileType.Enemy, 'L', 20, 20, 2, 2)
         {
-            target.gethealth = target.gethealth - 5;
+          
         }
+        
 
-        public override MovementEnum ReturnMove(MovementEnum move = MovementEnum.NoMovement)
-        {
-            if (CheckValidMove(move))
-            {
-                return move;
-            }
-            else return MovementEnum.NoMovement;
-        }
-
-        public override string ToString()
-        {
-            string Info = "Player Stats: \n";
-            Info += "Hp: " + Health.ToString() + "/" + MaxHealth.ToString() + "\n";
-            Info += "Damage: " + Damage.ToString() + "\n";
-            Info += "Gold: " + GoldAmount.ToString() + "\n";
-            Info += "[" + x.ToString() + "," + y.ToString() + "]";
-            return Info;
-        }
-
-       public bool CheckValidMove(MovementEnum Charactermove)
+        public bool CheckValidMove(MovementEnum Charactermove)
         {
             {
                 bool valid = false;
@@ -78,5 +56,36 @@ namespace Hein_Kroese_GADE6112_POE
                 return valid;
             }
         }
+        public override MovementEnum ReturnMove(MovementEnum move = MovementEnum.NoMovement)
+        {
+            if (CheckValidMove(move))
+            {
+                if (x > hero.getx)
+                {
+                    return MovementEnum.Left;
+                }
+
+            else if (x < hero.getx)
+            {
+                return MovementEnum.Right;
+            }
+            else if (y > hero.gety)
+            {
+                return MovementEnum.Up;
+            }
+            else if (y < hero.gety)
+            {
+                return MovementEnum.Down;
+            }
+            else
+            {
+                return MovementEnum.NoMovement;
+            }   
+           
+            }
+           else return MovementEnum.NoMovement;
+ 
+        }
+
     }
 }

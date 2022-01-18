@@ -8,81 +8,272 @@ namespace Hein_Kroese_GADE6112_POE
 {
     class Map
     {   //Map size
-        private int minHeight;
-        private int minWidth;
-        private int maxHeight;
-        private int maxWidth;
-        private int numEnemies;
+        private int mapLong;
+        private int mapWide;
+        
+        //Amount of bad peoples
+        private int enemynumber;
+        private Item item;
+        
+        //Accessors cause yeah, real helpful
+        public Hero Player { set{ player = value; } get{ return player; } } 
+        public Goblin Gobolobolin { set { Gob = value; } get { return Gob; } }
+        public int NumEnemies { set{ enemynumber = value; } get{ return enemynumber; } }
+        public int Width { set { mapWide = value; } get { return mapWide; } }
+        public int Height { set { mapLong = value; } get { return mapLong; } }
+        public Tile[,] Tilemappy { set { theMap = value; } get { return theMap; } } 
+        public Item[] Iteems { set{ Itemythings = value; } get{ return Itemythings; } }
 
-        //Map array
-        private char[,] mapXY;
-
+        
+        //Arry things
+        public Tile[,] theMap;
+        public Enemy[] arrayofenemies;
+        public Item[] Itemythings;
+        public Weapon[] weapons;
+        
         //Player Variable
-        private Hero Player;
-
-        //Enemy array
-        private char[] Enemies;
-
+        private Hero player;
+        private Goblin Gob;
+               
         //Random number generator
         private Random RanDumb = new Random();
-        public int Coords(int min, int max)
-        {
-            return RanDumb.Next(min, max);
-        }
 
-        public Map(int MinHeight, int MinWidth, int MaxHeight, int MaxWidth, int NumEnemies)
-        {
-            minHeight = MinHeight;
-            minWidth = MinWidth;
-            maxHeight = MaxHeight;
-            maxWidth = MaxWidth;
-            numEnemies = NumEnemies;
-        }
+        public Map(int MinHeight, int MinWidth, int MaxHeight, int MaxWidth, int NumEnemies, int NumGold, int NumWeapons)
+        {   
+            Random RanDum = new Random();
+            
+            mapLong = RanDum.Next(MinHeight,MaxHeight + 1);
+            mapWide = RanDum.Next(MinWidth, MaxWidth + 1);
 
+            theMap = new Tile[mapWide,mapLong];
+            //Declare length of arrays
+            arrayofenemies = new Enemy[NumEnemies];
+            Itemythings = new Item[NumGold];
+            weapons = new Weapon[NumWeapons];
+
+            FillMap();
+
+            Player = (Hero)create(TileType.Hero);
+            theMap[player.getx, player.gety] = player;
+
+            for (int i = 0; i < arrayofenemies.Length; i++)
+            {
+                arrayofenemies[i] = (Enemy)create(TileType.Enemy);
+                theMap[arrayofenemies[i].getx, arrayofenemies[i].gety] = arrayofenemies[i];
+            }
+
+            for (int i = 0; i < Itemythings.Length; i++)
+            {
+                Itemythings[i] = (Gold)create(TileType.Gold);
+                theMap[Itemythings[i].getx, Itemythings[i].gety] = Itemythings[i];
+            }
+
+            for (int i = 0; i < weapons.Length; i++)
+            {
+                Itemythings[i] = (MeleeWeapon)create(TileType.Weapon);
+                theMap[Itemythings[i].getx, Itemythings[i].gety] = Itemythings[i];
+            }
+
+            UpdateVision();
+        }
+        //Update the map dumbo
         public void updateMap()
         {
-            mapXY = new char[maxHeight, maxWidth];
-        }
-
-        private Tile create(Tile.TileType MakingOfTile)
-        {
-            for (int i = 0; i < Coords(2,16); i++)
+            FillMap();
+            
+            theMap[Player.getx, Player.gety] = Player;
+            
+            for (int i = 0; i < arrayofenemies.Length; i ++)
             {
-                for (int j = 0; j < Coords(2, 16); j++)
+                theMap[arrayofenemies[i].getx, arrayofenemies[i].gety] = arrayofenemies[i];
+            }
+           
+            Addgold();
+            AddWeapon();
+           
+            for (int j = 0; j < Itemythings.Length; j++)
+            {
+                theMap[Itemythings[j].getx,Itemythings[j].gety] = Itemythings[j];
+            }
+
+            UpdateVision();
+        }
+        
+        public Tile[,] Mappymap { set { theMap = value; } get { return theMap; } }
+       
+        //Create the tiles, it's litteraly in the name
+        private Tile create(TileType MakingOfTile)
+        {
+            Random RanDum = new Random();
+            int RNGX;
+            int RNGY;
+            int EnemType;
+
+            bool IsTileOpen(int x, int y)
+            {
+                if (theMap[x,y].GetType() != typeof(EmptyTile))
                 {
-                    mapXY[i, j] = '.';
+                    return true;
+                }
+                else
+                {
+                    return false;
                 }
             }
 
             switch(MakingOfTile)
             {
-                case Tile.TileType.Hero:
-                    return new Hero(2, 2, 'H', 15, 15, 3, 3);
-               
-                case Tile.TileType.Enemy:
-                    return new Goblin(2, 2, 'G', 10, 10, 1);
+                case TileType.Hero:
+                    do
+                    {
+                        RNGX = RanDum.Next(0, theMap.GetLength(0));
+                        RNGY = RanDum.Next(0, theMap.GetLength(1));
+                    } while (IsTileOpen(RNGX,RNGY));
 
-               /* case Tile.TileType.Obstacle:
-                    return new Obstacle();
+                    return new Hero(RNGX, RNGY);
 
-                case Tile.TileType.Empty:
-                    return new EmptyTile();
+                case TileType.Enemy:
+                    do
+                    {
+                        RNGX = RanDum.Next(0, theMap.GetLength(0));
+                        RNGY = RanDum.Next(0, theMap.GetLength(1));
+                        EnemType = RanDum.Next(0, 3);
+                    } while (IsTileOpen(RNGX, RNGY));
 
-                    
-                     case Tile.TileType.Gold:
-                        return new "Gold"
+                    if (EnemType == 0)
+                    {
+                        return new Goblin(RNGX, RNGY);
+                    }
+                    else if(EnemType == 1)
+                    {
+                        return new Mage(RNGX, RNGY);
+                    }
+                    else
+                    {
+                        return new Leader(RNGX, RNGY);
+                    }
+                case TileType.Gold:
+                    do
+                    {
+                        RNGX = RanDum.Next(0, theMap.GetLength(0));
+                        RNGY = RanDum.Next(0, theMap.GetLength(1));
+                    } while (IsTileOpen(RNGX, RNGY));
 
-                     case Tile.TileType.Weapon:
-                        return new "Weapon"
-                     */
+                    return new Gold(RNGX,RNGY, TileType.Gold);
 
+                case TileType.Weapon:
+                    do
+                    {
+                        RNGX = RanDum.Next(0, theMap.GetLength(0));
+                        RNGY = RanDum.Next(0, theMap.GetLength(1));
+                    } while (IsTileOpen(RNGX, RNGY));
+                                   
+                    return new MeleeWeapon(MeleeWeapon.Weapons.Dagger,RNGX,RNGY);
+
+                default:
+                     return null;
             }
-             return null;
+        
         }
 
-        public override string ToString()
+        //Improve your eyes stupid
+        public void UpdateVision()
+        {   
+          foreach (Enemy enemy in arrayofenemies)
+          {
+            enemy.Vision[0] = theMap[enemy.getx, enemy.gety - 1];
+            enemy.Vision[1] = theMap[enemy.getx, enemy.gety + 1];
+            enemy.Vision[2] = theMap[enemy.getx + 1, enemy.gety];
+            enemy.Vision[3] = theMap[enemy.getx - 1, enemy.gety];
+          }
+
+           Player.Vision[0] = theMap[Player.getx, Player.gety - 1];
+           Player.Vision[1] = theMap[Player.getx, Player.gety + 1];
+           Player.Vision[2] = theMap[Player.getx + 1, Player.gety];
+           Player.Vision[3] = theMap[Player.getx - 1, Player.gety];
+
+        }
+        //MAKE MAP YOU DUMB DUMB
+        public void FillMap()
         {
-            return null;              
+            for (int i = 0; i < theMap.GetLength(0); i++)
+            {
+                for (int j = 0; j < theMap.GetLength(1); j++)
+                {
+                    theMap[i, j] = new EmptyTile(i, j,TileType.Empty);
+                }
+            }
+
+            for (int i = 0; i < theMap.GetLength(0); i++)
+            {
+                for (int j = 0; j < theMap.GetLength(1); j++)
+                {
+                   if (i == 0 || j == 0|| i == mapWide - 1 || j == mapLong - 1)
+                   {
+                        theMap[i, j] = new Obstacle(i,j, TileType.Empty);
+                   }
+                }
+            }
+
+        }
+
+        private void Addgold()
+        {
+            for (int i = 0; i < Itemythings.Length; i++)
+            {
+                if (Mappymap[Player.getx, Player.gety] == Mappymap[Itemythings[i].getx, Itemythings[i].gety])
+                {
+                    Player.Pickup(GetItemAtPosition(Player.getx, Player.gety));
+                }
+            }
+
+        }
+
+        private void AddWeapon()
+        {
+            for (int i = 0; i < Itemythings.Length; i++)
+            {
+                if (Mappymap[Player.getx, Player.gety] == Mappymap[Itemythings[i].getx, Itemythings[i].gety])
+                {
+                    Player.Pickup(GetItemAtPosition(Player.getx, Player.gety));
+                }
+            }
+        }
+
+        public Item GetItemAtPosition(int x, int y)
+        {
+            Item output = null;
+            for (int i = 0; i < Itemythings.Length; i++)
+            {
+                if (x == Itemythings[i].getx && y == Itemythings[i].gety && Itemythings[i].Tiletyping == TileType.Gold)
+                {
+                    output = Itemythings[i];
+                    Itemythings[i] = null;
+                    Itemythings = Itemythings.Where((source, index) => index != i).ToArray();
+                }
+                else if (x == Itemythings[i].getx && y == Itemythings[i].gety && Itemythings[i].Tiletyping == TileType.Weapon)
+                {
+                    output = Itemythings[i];
+                    Itemythings[i] = null;
+                    Itemythings = Itemythings.Where((source, index) => index != i).ToArray();
+                }
+            }
+            return output;
+
+        
+        }
+        public string redraw()
+        {
+            string output = "";
+            for (int y = 0; y < theMap.GetLength(1); y++)
+            {
+                for (int x = 0; x < theMap.GetLength(0); x++)
+                {
+                    output += theMap[x, y].getsymbol;
+                }
+                output += '\n';
+            }
+            return output;
         }
     }
 }
