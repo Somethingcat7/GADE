@@ -7,15 +7,15 @@ using System.Threading.Tasks;
 namespace Hein_Kroese_GADE6112_POE
 {
     class MeleeWeapon : Weapon
-    { public enum Weapons { Dagger, Longsword }
+    { public enum MeleeTypes { Dagger, Longsword }
 
         public override int getRange { get { return 1; } }
         Random Randumb = new Random();
 
-        public MeleeWeapon( Weapons types, int x, int y) : base(x, y, 'W')
+        public MeleeWeapon(MeleeTypes types, int x = 0, int y = 0) : base(x, y, 'W')
         {
 
-            if (types == Weapons.Dagger)
+            if (types == MeleeTypes.Dagger)
             {
                 Damage = 3;
                 Durability = 10;
@@ -31,7 +31,7 @@ namespace Hein_Kroese_GADE6112_POE
         
         public override string ToString()
         {
-            throw new NotImplementedException();
+            return $"{this.Type}";
         }
 
         

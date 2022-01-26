@@ -8,7 +8,7 @@ namespace Hein_Kroese_GADE6112_POE
 {
     abstract class Weapon : Item
     {
-        protected Weapon(int x, int y, char symbol) : base(x, y, TileType.Weapon ,symbol)
+        protected Weapon(int x, int y, char symbol) : base(x, y, symbol)
         {
 
         }

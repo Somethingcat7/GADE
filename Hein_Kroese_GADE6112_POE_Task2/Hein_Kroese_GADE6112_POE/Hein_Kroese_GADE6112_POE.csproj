@@ -52,7 +52,6 @@
     <Compile Include="RangedWeapon.cs" />
     <Compile Include="Shop.cs" />
     <Compile Include="Weapons.cs" />
-    <Compile Include="Enums.cs" />
     <Compile Include="Mage.cs" />
     <Compile Include="Gold.cs" />
     <Compile Include="Item.cs" />

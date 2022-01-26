@@ -7,13 +7,15 @@ using System.Threading.Tasks;
 namespace Hein_Kroese_GADE6112_POE
 {
     class RangedWeapon : Weapon
-    {   public enum Weapons { Rifle, Longbow}
+    {   public enum RangedTypes { Rifle, Longbow}
 
         public override int getRange { get { return 1; } }
 
-        public RangedWeapon(Weapons types,int x = 0, int y = 0) : base(x, y, 'W')
+
+
+        public RangedWeapon(RangedTypes types,int x = 0, int y = 0) : base(x, y, 'W')
         {
-            if (types == Weapons.Rifle)
+            if (types == RangedTypes.Rifle)
             {
                 Damage = 5;
                 Durability = 3;
@@ -31,7 +33,7 @@ namespace Hein_Kroese_GADE6112_POE
 
         public override string ToString()
         {
-            throw new NotImplementedException();
+            return $"{this.Type}";
         }
     }
 }

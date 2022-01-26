@@ -11,9 +11,10 @@ namespace Hein_Kroese_GADE6112_POE
 
         Hero hero = new Hero(1,1);
 
-        public Leader(int x, int y) : base(x, y, TileType.Enemy, 'L', 20, 20, 2, 2)
+        public Leader(int x, int y) : base(x, y, 'L', 20, 2)
         {
-          
+            this.Purse = 2;
+            this.weapon = new MeleeWeapon(MeleeWeapon.MeleeTypes.Longsword);
         }
         
 
@@ -25,28 +26,28 @@ namespace Hein_Kroese_GADE6112_POE
                 switch (Charactermove)
                 {
                     case MovementEnum.Right:
-                        if (vision[2].GetType() == typeof(EmptyTile) || vision[2].GetType() == typeof(Gold))
+                        if (VisionArray[2].GetType() == typeof(EmptyTile) || VisionArray[2].GetType() == typeof(Gold))
                         {
                             valid = true;
                             break;
                         }
                         break;
                     case MovementEnum.Left:
-                        if (vision[3].GetType() == typeof(EmptyTile) || vision[3].GetType() == typeof(Gold))
+                        if (VisionArray[3].GetType() == typeof(EmptyTile) || VisionArray[3].GetType() == typeof(Gold))
                         {
                             valid = true;
                             break;
                         }
                         break;
                     case MovementEnum.Down:
-                        if (vision[1].GetType() == typeof(EmptyTile) || vision[1].GetType() == typeof(Gold))
+                        if (VisionArray[1].GetType() == typeof(EmptyTile) || VisionArray[1].GetType() == typeof(Gold))
                         {
                             valid = true;
                             break;
                         }
                         break;
                     case MovementEnum.Up:
-                        if (vision[0].GetType() == typeof(EmptyTile) || vision[0].GetType() == typeof(Gold))
+                        if (VisionArray[0].GetType() == typeof(EmptyTile) || VisionArray[0].GetType() == typeof(Gold))
                         {
                             valid = true;
                             break;
@@ -56,7 +57,7 @@ namespace Hein_Kroese_GADE6112_POE
                 return valid;
             }
         }
-        public override MovementEnum ReturnMove(MovementEnum move = MovementEnum.NoMovement)
+        public override MovementEnum ReturnMove(MovementEnum move = MovementEnum.Idle)
         {
             if (CheckValidMove(move))
             {
@@ -79,11 +80,11 @@ namespace Hein_Kroese_GADE6112_POE
             }
             else
             {
-                return MovementEnum.NoMovement;
+                return MovementEnum.Idle;
             }   
            
             }
-           else return MovementEnum.NoMovement;
+           else return MovementEnum.Idle;
  
         }
 

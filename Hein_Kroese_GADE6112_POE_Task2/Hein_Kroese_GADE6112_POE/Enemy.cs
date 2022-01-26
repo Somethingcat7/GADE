@@ -11,13 +11,9 @@ namespace Hein_Kroese_GADE6112_POE
     {
         protected Random RanNum = new Random();
 
-        protected Enemy(int x, int y, TileType TileType, char symbol, int health, int maxHP, int damage, int goldAmount) : base(x, y, TileType , symbol, health, maxHP, damage, goldAmount)
+        protected Enemy(int x, int y, char symbol, int maxHP, int damage) : base(x, y, symbol, maxHP, damage)
         {
-            Health = health;
-            MaxHealth = maxHP;
-            Damage = damage;
-
-
+            
         }
 
         public int Coords(int min, int max)
@@ -25,52 +21,7 @@ namespace Hein_Kroese_GADE6112_POE
             return RanNum.Next(min, max);
         }
 
-        bool CheckValidMove(MovementEnum charactermove)
-        {
-            bool valid = false;
-
-            switch (charactermove)
-            {
-                case MovementEnum.Right:
-                    if (vision[2].GetType() == typeof(EmptyTile) || vision[2].GetType() == typeof(Gold))
-                    {
-                        valid = true;
-                        break;
-                    }
-                    break;
-                case MovementEnum.Left:
-                    if (vision[3].GetType() == typeof(EmptyTile) || vision[3].GetType() == typeof(Gold))
-                    {
-                        valid = true;
-                        break;
-                    }
-                    break;
-                case MovementEnum.Down:
-                    if (vision[1].GetType() == typeof(EmptyTile) || vision[1].GetType() == typeof(Gold))
-                    {
-                        valid = true;
-                        break;
-                    }
-                    break;
-                case MovementEnum.Up:
-                    if (vision[0].GetType() == typeof(EmptyTile) || vision[0].GetType() == typeof(Gold))
-                    {
-                        valid = true;
-                        break;
-                    }
-                    break;
-            }
-            return valid;
-        }
-
-        public override MovementEnum ReturnMove(MovementEnum move = MovementEnum.NoMovement)
-        {
-            if (CheckValidMove(move))
-            {
-                return move;
-            }
-            else return MovementEnum.NoMovement;
-        }
+       
 
         public override void Attack(Character target)
         {
@@ -79,11 +30,32 @@ namespace Hein_Kroese_GADE6112_POE
 
         public override string ToString()
         {
-            string Info = TileTyping + "\n";
-            Info += "at ["+ x.ToString() + "," + y.ToString() + "] \n";
-            Info += Health.ToString() + "Hp \n";
-            Info += "(" + Damage.ToString() + ")";
-            return Info;
+            string equipState;
+            bool isEquipped;
+
+            if (this.weapon == null)
+            {
+                equipState = "Barehanded:";
+                isEquipped = false;
+            }
+
+            else
+            {
+                equipState = "Equipped:";
+                isEquipped = true;
+            }
+
+            if (isEquipped)
+            {
+                // Equipped: Leader (20/20HP) at [6, 1] with Longsword
+                return $"{equipState} {this.GetType().Name}\n at [{this.x}, {this.y}] with {this.weapon.ToString()}\n({this.weapon.getDurability * this.weapon.getDamage})";
+            }
+
+            else
+            {
+                // Barehanded: Mage (5/5HP) at [6, 6] (5 DMG)
+                return $"{equipState} {this.GetType().Name}\n at [{this.x}, {this.y}] ({this.getDamage} DMG)";
+            }
         }
 
     }

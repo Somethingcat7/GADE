@@ -73,13 +73,13 @@ namespace Hein_Kroese_GADE6112_POE
             switch (type)
             {
                 case 0:
-                    return new MeleeWeapon(MeleeWeapon.Weapons.Dagger,0,0);
+                    return new MeleeWeapon(MeleeWeapon.MeleeTypes.Dagger,0,0);
                 case 1:
-                    return new MeleeWeapon(MeleeWeapon.Weapons.Longsword,0,0);
+                    return new MeleeWeapon(MeleeWeapon.MeleeTypes.Longsword,0,0);
                 case 2:
-                    return new RangedWeapon(RangedWeapon.Weapons.Rifle);
+                    return new RangedWeapon(RangedWeapon.RangedTypes.Rifle);
                 case 3:
-                    return new RangedWeapon(RangedWeapon.Weapons.Longbow);
+                    return new RangedWeapon(RangedWeapon.RangedTypes.Longbow);
                 default:
                     return null;
             }

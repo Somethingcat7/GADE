@@ -19,44 +19,12 @@ namespace Hein_Kroese_GADE6112_POE
 
         public GameEngine()
         {
-            map = new Map(10, 14, 10, 14, 6, 6, 3);
+            map = new Map(14, 16, 18, 21, 6, 8);
         }
-        //Player doing a movement
-        public void MovePlayer(MovementEnum motion)
-        {
-            switch (motion)
-            {
-                //move up
-                case MovementEnum.Up:
-                    map.Player.Move(map.Player.ReturnMove(MovementEnum.Up));
-                    break;
-
-                //move down
-                case MovementEnum.Down:
-                    map.Player.Move(map.Player.ReturnMove(MovementEnum.Down));
-                    break;
-
-                //move left
-                case MovementEnum.Left:
-                    map.Player.Move(map.Player.ReturnMove(MovementEnum.Left));
-                    break;
-
-                //move right
-                case MovementEnum.Right:
-                    map.Player.Move(map.Player.ReturnMove(MovementEnum.Right));
-                    break;
-            }
-        }
+        
         //Enemies doing a movement
-        public void MoveEnemies(MovementEnum movement)
-        {
-            for (int i = 0; i < map.arrayofenemies.Length; i++)
-            {
-                map.arrayofenemies[i].Move(map.arrayofenemies[i].ReturnMove(movement));
-            }
-            EnemyAttack();
-        }
-        public void MoveLeader(MovementEnum movement)
+        
+        public void MoveLeader(Character.MovementEnum movement)
         {
             for (int i = 0; i < map.arrayofenemies.Length; i++)
             {
@@ -73,7 +41,7 @@ namespace Hein_Kroese_GADE6112_POE
                 switch (map.arrayofenemies[i].getsymbol)
                 {
                     case 'G':
-                        foreach (Tile T in map.arrayofenemies[i].Vision)
+                        foreach (Tile T in map.arrayofenemies[i].VisionArray)
                         {
                             if (T.getx == map.Player.getx && (T.gety == map.Player.gety))
                             {

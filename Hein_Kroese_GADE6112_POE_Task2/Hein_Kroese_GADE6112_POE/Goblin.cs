@@ -9,45 +9,63 @@ namespace Hein_Kroese_GADE6112_POE
     //Subclass Goblin to class Enemy
     class Goblin : Enemy
     {
-        public Goblin(int x, int y) : base(x, y,TileType.Enemy, 'G', 5, 5, 2, 1)
+        public Goblin(int x, int y) : base(x, y, 'G', 10, 2)
         {
-     
+            this.Purse = 1;
+            //this.weapon = new MeleeWeapon(MeleeWeapon.MeleeTypes.Dagger);
         }
 
-        public override MovementEnum ReturnMove(MovementEnum move = MovementEnum.NoMovement)
+        public override MovementEnum ReturnMove(MovementEnum move)
         {
-            int randomtileindex = RanNum.Next(0, Vision.Length);
+            MovementEnum moveDirect = MovementEnum.Idle;
 
-            while (Vision[randomtileindex].getsymbol.Equals(typeof(EmptyTile)))
+            switch (move)
             {
-                randomtileindex = RanNum.Next(0, Vision.Length);
+                case MovementEnum.Right:
+                    if (VisionArray[2].GetType() == typeof(EmptyTile) || VisionArray[2].GetType() == typeof(Gold) || VisionArray[2].GetType() == typeof(Weapon))
+                    {
+                        if (VisionArray[2].GetType() != typeof(Hero))
+                        {
+                            moveDirect = MovementEnum.Right;
+                        }
+                    }
+                    break;
+                case MovementEnum.Left:
+                    if (VisionArray[3].GetType() == typeof(EmptyTile) || VisionArray[3].GetType() == typeof(Gold) || VisionArray[3].GetType() == typeof(Weapon))
+                    {
+                        if (VisionArray[3].GetType() != typeof(Hero))
+                        {
+                            moveDirect = MovementEnum.Left;
+                        }
+                    }
+                    break;
+                case MovementEnum.Down:
+                    if (VisionArray[1].GetType() == typeof(EmptyTile) || VisionArray[1].GetType() == typeof(Gold) || VisionArray[1].GetType() == typeof(Weapon))
+                    {
+                        if (VisionArray[1].GetType() != typeof(Hero))
+                        {
+                            moveDirect = MovementEnum.Down;
+                        }
+                    }
+                    break;
+                case MovementEnum.Up:
+                    if (VisionArray[0].GetType() == typeof(EmptyTile) || VisionArray[0].GetType() == typeof(Gold) || VisionArray[0].GetType() == typeof(Weapon))
+                    {
+                        if (VisionArray[0].GetType() != typeof(Hero))
+                        {
+                            moveDirect = MovementEnum.Up;
+                        }
+                    }
+                    break;
             }
 
-            if (Vision[randomtileindex].getx > x)
-            {
-                return MovementEnum.Right;
-            }
-            else if (Vision[randomtileindex].getx < x)
-            {
-                return MovementEnum.Left;
-            }
-            else if (Vision[randomtileindex].gety < y)
-            {
-                return MovementEnum.Up;
-            }
-            else if (Vision[randomtileindex].gety > y)
-            {
-                return MovementEnum.Down;
-            }
-
-            return MovementEnum.NoMovement;
+            return moveDirect;
         }
 
-        public override string ToString()
+        /*public override string ToString()
         {
             return "Goblin at: [" + x.ToString() + ", " + y.ToString() + "] " +  Damage.ToString();
-        }
-
+        }*/
 
     }
 }

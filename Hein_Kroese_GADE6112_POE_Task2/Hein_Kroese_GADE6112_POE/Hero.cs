@@ -10,7 +10,7 @@ namespace Hein_Kroese_GADE6112_POE
     class Hero : Character
     {
 
-        public Hero(int x, int y) : base(x, y, TileType.Hero, 'H', 10, 10, 10, 0)
+        public Hero(int x, int y) : base(x, y, 'H', 10, 0)
         {
 
         }
@@ -20,13 +20,50 @@ namespace Hein_Kroese_GADE6112_POE
             target.gethealth = target.gethealth - 5;
         }
 
-        public override MovementEnum ReturnMove(MovementEnum move = MovementEnum.NoMovement)
+        public override MovementEnum ReturnMove(MovementEnum move)
         {
-            if (CheckValidMove(move))
+            MovementEnum movement = MovementEnum.Idle;
+
+            switch (move)
             {
-                return move;
+                //move up
+                case Character.MovementEnum.Up:
+                    if (VisionArray[0].GetType() == typeof(EmptyTile) || VisionArray[0].GetType() == typeof(Gold) || VisionArray[0].GetType() == typeof(MeleeWeapon) || VisionArray[0].GetType() == typeof(RangedWeapon))
+                    {
+                        movement = MovementEnum.Up;
+                    }
+                    break;
+
+                //move down
+                case Character.MovementEnum.Down:
+                    if (VisionArray[0].GetType() == typeof(EmptyTile) || VisionArray[0].GetType() == typeof(Gold) || VisionArray[0].GetType() == typeof(MeleeWeapon) || VisionArray[0].GetType() == typeof(RangedWeapon))
+                    {
+                        movement = MovementEnum.Down;
+                    }
+                    break;
+
+                //move left
+                case Character.MovementEnum.Left:
+                    if (VisionArray[0].GetType() == typeof(EmptyTile) || VisionArray[0].GetType() == typeof(Gold) || VisionArray[0].GetType() == typeof(MeleeWeapon) || VisionArray[0].GetType() == typeof(RangedWeapon))
+                    {
+                        movement = MovementEnum.Left;
+                    }
+                    break;
+
+                //move right
+                case Character.MovementEnum.Right:
+                    if (VisionArray[0].GetType() == typeof(EmptyTile) || VisionArray[0].GetType() == typeof(Gold) || VisionArray[0].GetType() == typeof(MeleeWeapon) || VisionArray[0].GetType() == typeof(RangedWeapon))
+                    {
+                        movement = MovementEnum.Right;
+                    }
+                    break;
+
+                default:
+                    movement = MovementEnum.Idle;
+                    break;
             }
-            else return MovementEnum.NoMovement;
+
+            return movement;
         }
 
         public override string ToString()
@@ -34,7 +71,7 @@ namespace Hein_Kroese_GADE6112_POE
             string Info = "Player Stats: \n";
             Info += "Hp: " + Health.ToString() + "/" + MaxHealth.ToString() + "\n";
             Info += "Damage: " + Damage.ToString() + "\n";
-            Info += "Gold: " + GoldAmount.ToString() + "\n";
+            Info += "Gold: " + Purse.ToString() + "\n";
             Info += "[" + x.ToString() + "," + y.ToString() + "]";
             return Info;
         }
@@ -47,28 +84,28 @@ namespace Hein_Kroese_GADE6112_POE
                 switch (Charactermove)
                 {
                     case MovementEnum.Right:
-                        if (vision[2].GetType() == typeof(EmptyTile) || vision[2].GetType() == typeof(Gold))
+                        if (VisionArray[2].GetType() == typeof(EmptyTile) || VisionArray[2].GetType() == typeof(Gold))
                         {
                             valid = true;
                             break;
                         }
                         break;
                     case MovementEnum.Left:
-                        if (vision[3].GetType() == typeof(EmptyTile) || vision[3].GetType() == typeof(Gold))
+                        if (VisionArray[3].GetType() == typeof(EmptyTile) || VisionArray[3].GetType() == typeof(Gold))
                         {
                             valid = true;
                             break;
                         }
                         break;
                     case MovementEnum.Down:
-                        if (vision[1].GetType() == typeof(EmptyTile) || vision[1].GetType() == typeof(Gold))
+                        if (VisionArray[1].GetType() == typeof(EmptyTile) || VisionArray[1].GetType() == typeof(Gold))
                         {
                             valid = true;
                             break;
                         }
                         break;
                     case MovementEnum.Up:
-                        if (vision[0].GetType() == typeof(EmptyTile) || vision[0].GetType() == typeof(Gold))
+                        if (VisionArray[0].GetType() == typeof(EmptyTile) || VisionArray[0].GetType() == typeof(Gold))
                         {
                             valid = true;
                             break;

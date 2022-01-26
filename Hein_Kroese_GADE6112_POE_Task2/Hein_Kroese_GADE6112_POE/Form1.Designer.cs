@@ -31,7 +31,6 @@ namespace Hein_Kroese_GADE6112_POE
         {
             this.lblMap = new System.Windows.Forms.Label();
             this.lblHeroStats = new System.Windows.Forms.Label();
-            this.lblEnemy = new System.Windows.Forms.Label();
             this.btnSave = new System.Windows.Forms.Button();
             this.btnLoad = new System.Windows.Forms.Button();
             this.btnUp = new System.Windows.Forms.Button();
@@ -39,6 +38,11 @@ namespace Hein_Kroese_GADE6112_POE
             this.btnRight = new System.Windows.Forms.Button();
             this.btnLeft = new System.Windows.Forms.Button();
             this.btnAttack = new System.Windows.Forms.Button();
+            this.lblAttackNotif = new System.Windows.Forms.Label();
+            this.cmbEnemies = new System.Windows.Forms.ComboBox();
+            this.cmbItems = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lblMap
@@ -46,42 +50,29 @@ namespace Hein_Kroese_GADE6112_POE
             this.lblMap.AutoSize = true;
             this.lblMap.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.lblMap.Font = new System.Drawing.Font("Courier New", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMap.Location = new System.Drawing.Point(14, 10);
+            this.lblMap.Location = new System.Drawing.Point(416, 9);
             this.lblMap.Name = "lblMap";
             this.lblMap.Size = new System.Drawing.Size(177, 170);
             this.lblMap.TabIndex = 0;
             this.lblMap.Text = "XXXXXXXXXXXXXX\r\nX......G.....X\r\nX......G.....X\r\nX............X\r\nX....G.G.....X\r\nX" +
     ".....GH.....X\r\nX............X\r\nXXXXXXXXXXXXXX ";
             this.lblMap.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.lblMap.Click += new System.EventHandler(this.lblMap_Click);
             // 
             // lblHeroStats
             // 
             this.lblHeroStats.AutoSize = true;
             this.lblHeroStats.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.lblHeroStats.Font = new System.Drawing.Font("Courier New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblHeroStats.Location = new System.Drawing.Point(197, 10);
+            this.lblHeroStats.Location = new System.Drawing.Point(12, 9);
             this.lblHeroStats.Name = "lblHeroStats";
             this.lblHeroStats.Size = new System.Drawing.Size(140, 20);
             this.lblHeroStats.TabIndex = 1;
             this.lblHeroStats.Text = "{Placeholder}";
-            this.lblHeroStats.Click += new System.EventHandler(this.lblHeroStats_Click);
-            // 
-            // lblEnemy
-            // 
-            this.lblEnemy.AutoSize = true;
-            this.lblEnemy.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lblEnemy.Font = new System.Drawing.Font("Courier New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblEnemy.Location = new System.Drawing.Point(197, 106);
-            this.lblEnemy.Name = "lblEnemy";
-            this.lblEnemy.Size = new System.Drawing.Size(140, 20);
-            this.lblEnemy.TabIndex = 2;
-            this.lblEnemy.Text = "{Placeholder}";
             // 
             // btnSave
             // 
             this.btnSave.Font = new System.Drawing.Font("Courier New", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSave.Location = new System.Drawing.Point(190, 222);
+            this.btnSave.Location = new System.Drawing.Point(12, 213);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(75, 29);
             this.btnSave.TabIndex = 3;
@@ -92,7 +83,7 @@ namespace Hein_Kroese_GADE6112_POE
             // btnLoad
             // 
             this.btnLoad.Font = new System.Drawing.Font("Courier New", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnLoad.Location = new System.Drawing.Point(362, 222);
+            this.btnLoad.Location = new System.Drawing.Point(184, 213);
             this.btnLoad.Name = "btnLoad";
             this.btnLoad.Size = new System.Drawing.Size(75, 29);
             this.btnLoad.TabIndex = 4;
@@ -103,62 +94,121 @@ namespace Hein_Kroese_GADE6112_POE
             // btnUp
             // 
             this.btnUp.Font = new System.Drawing.Font("Courier New", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnUp.Location = new System.Drawing.Point(271, 222);
+            this.btnUp.Location = new System.Drawing.Point(12, 248);
             this.btnUp.Name = "btnUp";
-            this.btnUp.Size = new System.Drawing.Size(85, 29);
+            this.btnUp.Size = new System.Drawing.Size(75, 30);
             this.btnUp.TabIndex = 5;
-            this.btnUp.Text = "^";
+            this.btnUp.Text = "Left";
             this.btnUp.UseVisualStyleBackColor = true;
             this.btnUp.Click += new System.EventHandler(this.btnUp_Click);
             // 
             // btnDown
             // 
             this.btnDown.Font = new System.Drawing.Font("Courier New", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDown.Location = new System.Drawing.Point(271, 293);
+            this.btnDown.Location = new System.Drawing.Point(184, 248);
             this.btnDown.Name = "btnDown";
-            this.btnDown.Size = new System.Drawing.Size(85, 29);
+            this.btnDown.Size = new System.Drawing.Size(75, 30);
             this.btnDown.TabIndex = 6;
-            this.btnDown.Text = "v";
+            this.btnDown.Text = "Right";
             this.btnDown.UseVisualStyleBackColor = true;
             this.btnDown.Click += new System.EventHandler(this.btnDown_Click);
             // 
             // btnRight
             // 
             this.btnRight.Font = new System.Drawing.Font("Courier New", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRight.Location = new System.Drawing.Point(362, 257);
+            this.btnRight.Location = new System.Drawing.Point(93, 284);
             this.btnRight.Name = "btnRight";
-            this.btnRight.Size = new System.Drawing.Size(75, 30);
+            this.btnRight.Size = new System.Drawing.Size(85, 30);
             this.btnRight.TabIndex = 7;
-            this.btnRight.Text = ">";
+            this.btnRight.Text = "Down";
             this.btnRight.UseVisualStyleBackColor = true;
             this.btnRight.Click += new System.EventHandler(this.btnRight_Click);
             // 
             // btnLeft
             // 
             this.btnLeft.Font = new System.Drawing.Font("Courier New", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnLeft.Location = new System.Drawing.Point(190, 257);
+            this.btnLeft.Location = new System.Drawing.Point(93, 213);
             this.btnLeft.Name = "btnLeft";
-            this.btnLeft.Size = new System.Drawing.Size(75, 30);
+            this.btnLeft.Size = new System.Drawing.Size(85, 29);
             this.btnLeft.TabIndex = 8;
-            this.btnLeft.Text = "<";
+            this.btnLeft.Text = "Up";
             this.btnLeft.UseVisualStyleBackColor = true;
             this.btnLeft.Click += new System.EventHandler(this.btnLeft_Click);
             // 
             // btnAttack
             // 
             this.btnAttack.Font = new System.Drawing.Font("Courier New", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAttack.Location = new System.Drawing.Point(271, 257);
+            this.btnAttack.Location = new System.Drawing.Point(93, 248);
             this.btnAttack.Name = "btnAttack";
             this.btnAttack.Size = new System.Drawing.Size(85, 30);
             this.btnAttack.TabIndex = 9;
             this.btnAttack.Text = "Attack";
             this.btnAttack.UseVisualStyleBackColor = true;
+            this.btnAttack.Click += new System.EventHandler(this.btnAttack_Click);
+            // 
+            // lblAttackNotif
+            // 
+            this.lblAttackNotif.AutoSize = true;
+            this.lblAttackNotif.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lblAttackNotif.Font = new System.Drawing.Font("Courier New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblAttackNotif.Location = new System.Drawing.Point(167, 9);
+            this.lblAttackNotif.Name = "lblAttackNotif";
+            this.lblAttackNotif.Size = new System.Drawing.Size(140, 20);
+            this.lblAttackNotif.TabIndex = 10;
+            this.lblAttackNotif.Text = "{Placeholder}";
+            this.lblAttackNotif.Visible = false;
+            this.lblAttackNotif.Click += new System.EventHandler(this.lblAttackNotif_Click);
+            // 
+            // cmbEnemies
+            // 
+            this.cmbEnemies.FormattingEnabled = true;
+            this.cmbEnemies.Location = new System.Drawing.Point(12, 139);
+            this.cmbEnemies.Name = "cmbEnemies";
+            this.cmbEnemies.Size = new System.Drawing.Size(285, 22);
+            this.cmbEnemies.TabIndex = 11;
+            // 
+            // cmbItems
+            // 
+            this.cmbItems.FormattingEnabled = true;
+            this.cmbItems.Location = new System.Drawing.Point(12, 185);
+            this.cmbItems.Name = "cmbItems";
+            this.cmbItems.Size = new System.Drawing.Size(285, 22);
+            this.cmbItems.TabIndex = 12;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label1.Font = new System.Drawing.Font("Courier New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(12, 116);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(80, 20);
+            this.label1.TabIndex = 13;
+            this.label1.Text = "Enemies";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label2.Font = new System.Drawing.Font("Courier New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(12, 164);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(60, 20);
+            this.label2.TabIndex = 14;
+            this.label2.Text = "Items";
+            this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // frmGame
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(440, 326);
+            this.ClientSize = new System.Drawing.Size(695, 440);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.cmbItems);
+            this.Controls.Add(this.cmbEnemies);
+            this.Controls.Add(this.lblHeroStats);
+            this.Controls.Add(this.lblAttackNotif);
             this.Controls.Add(this.btnAttack);
             this.Controls.Add(this.btnLeft);
             this.Controls.Add(this.btnRight);
@@ -166,8 +216,6 @@ namespace Hein_Kroese_GADE6112_POE
             this.Controls.Add(this.btnUp);
             this.Controls.Add(this.btnLoad);
             this.Controls.Add(this.btnSave);
-            this.Controls.Add(this.lblEnemy);
-            this.Controls.Add(this.lblHeroStats);
             this.Controls.Add(this.lblMap);
             this.Font = new System.Drawing.Font("Courier New", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Name = "frmGame";
@@ -182,7 +230,6 @@ namespace Hein_Kroese_GADE6112_POE
 
         private System.Windows.Forms.Label lblMap;
         private System.Windows.Forms.Label lblHeroStats;
-        private System.Windows.Forms.Label lblEnemy;
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.Button btnLoad;
         private System.Windows.Forms.Button btnUp;
@@ -190,6 +237,11 @@ namespace Hein_Kroese_GADE6112_POE
         private System.Windows.Forms.Button btnRight;
         private System.Windows.Forms.Button btnLeft;
         private System.Windows.Forms.Button btnAttack;
+        private System.Windows.Forms.Label lblAttackNotif;
+        private System.Windows.Forms.ComboBox cmbEnemies;
+        private System.Windows.Forms.ComboBox cmbItems;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
     }
 }
 
