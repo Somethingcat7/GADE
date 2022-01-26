@@ -47,6 +47,8 @@ namespace Hein_Kroese_GADE6112_POE
             this.btnShop1 = new System.Windows.Forms.Button();
             this.btnShop2 = new System.Windows.Forms.Button();
             this.btnShop3 = new System.Windows.Forms.Button();
+            this.btnExit = new System.Windows.Forms.Button();
+            this.btnRestart = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lblMap
@@ -243,11 +245,35 @@ namespace Hein_Kroese_GADE6112_POE
             this.btnShop3.UseVisualStyleBackColor = true;
             this.btnShop3.Click += new System.EventHandler(this.btnShop3_Click);
             // 
+            // btnExit
+            // 
+            this.btnExit.Font = new System.Drawing.Font("Courier New", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnExit.Location = new System.Drawing.Point(184, 284);
+            this.btnExit.Name = "btnExit";
+            this.btnExit.Size = new System.Drawing.Size(75, 29);
+            this.btnExit.TabIndex = 17;
+            this.btnExit.Text = "Exit";
+            this.btnExit.UseVisualStyleBackColor = true;
+            this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
+            // 
+            // btnRestart
+            // 
+            this.btnRestart.Font = new System.Drawing.Font("Courier New", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRestart.Location = new System.Drawing.Point(12, 284);
+            this.btnRestart.Name = "btnRestart";
+            this.btnRestart.Size = new System.Drawing.Size(75, 29);
+            this.btnRestart.TabIndex = 18;
+            this.btnRestart.Text = "Restart";
+            this.btnRestart.UseVisualStyleBackColor = true;
+            this.btnRestart.Click += new System.EventHandler(this.btnRestart_Click);
+            // 
             // frmGame
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(695, 440);
+            this.Controls.Add(this.btnRestart);
+            this.Controls.Add(this.btnExit);
             this.Controls.Add(this.btnShop3);
             this.Controls.Add(this.btnShop2);
             this.Controls.Add(this.btnShop1);
@@ -295,6 +321,8 @@ namespace Hein_Kroese_GADE6112_POE
         private System.Windows.Forms.Button btnShop1;
         private System.Windows.Forms.Button btnShop2;
         private System.Windows.Forms.Button btnShop3;
+        private System.Windows.Forms.Button btnExit;
+        private System.Windows.Forms.Button btnRestart;
     }
 }
 

@@ -119,6 +119,8 @@ namespace Hein_Kroese_GADE6112_POE
 
             cmbEnemies.DataSource = VideoJames.Map.arrayofenemies;
             cmbItems.DataSource = VideoJames.Map.Itemythings;
+
+            CheckIfLost();
         }
 
         private void lblAttackNotif_Click(object sender, EventArgs e)
@@ -200,6 +202,34 @@ namespace Hein_Kroese_GADE6112_POE
                 DrawMap();
 
             }
+        }
+
+        public void CheckIfLost()
+        {
+            if (VideoJames.Map.Player.isDead())
+            {
+                lblAttackNotif.Text = "You died";
+                btnAttack.Enabled = false;
+                btnDown.Enabled = false;
+                btnLeft.Enabled = false;
+                btnRight.Enabled = false;
+                btnUp.Enabled = false;
+                btnShop3.Enabled = false;
+                btnShop2.Enabled = false;
+                btnShop1.Enabled = false;
+                cmbEnemies.Enabled = false;
+                cmbItems.Enabled = false;
+            }
+        }
+
+        private void btnExit_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void btnRestart_Click(object sender, EventArgs e)
+        {
+            Application.Restart();
         }
     }
 }

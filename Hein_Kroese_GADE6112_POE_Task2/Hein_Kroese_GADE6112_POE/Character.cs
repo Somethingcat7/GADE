@@ -69,7 +69,7 @@ namespace Hein_Kroese_GADE6112_POE
         //Check if player is dead
         public bool isDead() 
         {           
-            if (Health <= 0) 
+            if (this.Health <= 0) 
             {
               return true;
             } 

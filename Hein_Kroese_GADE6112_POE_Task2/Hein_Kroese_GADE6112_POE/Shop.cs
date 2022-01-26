@@ -28,13 +28,10 @@ namespace Hein_Kroese_GADE6112_POE
 
             for (int i = 0; i < weaponarray.Length; i++)
             {
-                weaponarray[i] = RandomWeapon();
-
                 while (i != 0 && weaponarray[i] == weaponarray[i - 1])
                 {
                     weaponarray[i] = RandomWeapon();
                 }
-
             }
         }
 
