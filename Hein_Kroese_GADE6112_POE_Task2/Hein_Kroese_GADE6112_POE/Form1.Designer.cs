@@ -43,6 +43,10 @@ namespace Hein_Kroese_GADE6112_POE
             this.cmbItems = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.btnShop1 = new System.Windows.Forms.Button();
+            this.btnShop2 = new System.Windows.Forms.Button();
+            this.btnShop3 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lblMap
@@ -198,11 +202,56 @@ namespace Hein_Kroese_GADE6112_POE
             this.label2.Text = "Items";
             this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label3.Font = new System.Drawing.Font("Courier New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(12, 326);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(50, 20);
+            this.label3.TabIndex = 15;
+            this.label3.Text = "Shop";
+            // 
+            // btnShop1
+            // 
+            this.btnShop1.Location = new System.Drawing.Point(12, 350);
+            this.btnShop1.Name = "btnShop1";
+            this.btnShop1.Size = new System.Drawing.Size(75, 23);
+            this.btnShop1.TabIndex = 16;
+            this.btnShop1.Text = "Buy";
+            this.btnShop1.UseVisualStyleBackColor = true;
+            this.btnShop1.Click += new System.EventHandler(this.btnShop1_Click);
+            // 
+            // btnShop2
+            // 
+            this.btnShop2.Location = new System.Drawing.Point(93, 350);
+            this.btnShop2.Name = "btnShop2";
+            this.btnShop2.Size = new System.Drawing.Size(75, 23);
+            this.btnShop2.TabIndex = 16;
+            this.btnShop2.Text = "Buy";
+            this.btnShop2.UseVisualStyleBackColor = true;
+            this.btnShop2.Click += new System.EventHandler(this.btnShop2_Click);
+            // 
+            // btnShop3
+            // 
+            this.btnShop3.Location = new System.Drawing.Point(174, 350);
+            this.btnShop3.Name = "btnShop3";
+            this.btnShop3.Size = new System.Drawing.Size(75, 23);
+            this.btnShop3.TabIndex = 16;
+            this.btnShop3.Text = "Buy";
+            this.btnShop3.UseVisualStyleBackColor = true;
+            this.btnShop3.Click += new System.EventHandler(this.btnShop3_Click);
+            // 
             // frmGame
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(695, 440);
+            this.Controls.Add(this.btnShop3);
+            this.Controls.Add(this.btnShop2);
+            this.Controls.Add(this.btnShop1);
+            this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.cmbItems);
@@ -242,6 +291,10 @@ namespace Hein_Kroese_GADE6112_POE
         private System.Windows.Forms.ComboBox cmbItems;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Button btnShop1;
+        private System.Windows.Forms.Button btnShop2;
+        private System.Windows.Forms.Button btnShop3;
     }
 }
 

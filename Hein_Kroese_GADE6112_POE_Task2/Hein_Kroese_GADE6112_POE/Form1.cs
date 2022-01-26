@@ -12,18 +12,19 @@ namespace Hein_Kroese_GADE6112_POE
 {
     public partial class frmGame : Form
     {
-        
+
         public frmGame()
         {
             InitializeComponent();
-            
+
         }
 
         GameEngine VideoJames = new GameEngine();
         private void frmGame_Load(object sender, EventArgs e)
         {
+                       
             DrawMap();
-         //lblEnemy.Text = VideoJames.Map.Gobolobolin.ToString();
+            
         }
 
         private void btnSave_Click(object sender, EventArgs e)
@@ -70,7 +71,7 @@ namespace Hein_Kroese_GADE6112_POE
         private void btnLeft_Click(object sender, EventArgs e)
         {
             VideoJames.Map.Player.Move(VideoJames.Map.Player.ReturnMove(Character.MovementEnum.Left));
-            VideoJames.Map.MoveBaddies(); 
+            VideoJames.Map.MoveBaddies();
             VideoJames.Map.updateMap();
             lblMap.Text = VideoJames.ToString();
             lblHeroStats.Text = VideoJames.Map.Player.ToString();
@@ -128,6 +129,77 @@ namespace Hein_Kroese_GADE6112_POE
         private void label2_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnShop3_Click(object sender, EventArgs e)
+        {
+            if (VideoJames.Map.shop.CanBuy(VideoJames.Map.shop.WeaponArray[0].getCost))
+            {
+                VideoJames.Map.shop.Buy(VideoJames.Map.shop.WeaponArray[0].getCost);
+
+                lblAttackNotif.Text = $"You got a  {VideoJames.Map.shop.WeaponArray[0]}!";
+
+                DrawMap();
+            }
+
+            // cant buy
+            else
+            {
+
+                lblAttackNotif.Visible = true;
+                lblAttackNotif.Text = $"Not enough money for {VideoJames.Map.shop.WeaponArray[0]}!";
+
+                DrawMap();
+
+            }
+        }
+
+        private void btnShop2_Click(object sender, EventArgs e)
+        {
+            {
+                if (VideoJames.Map.shop.CanBuy(VideoJames.Map.shop.WeaponArray[0].getCost))
+                {
+                    VideoJames.Map.shop.Buy(VideoJames.Map.shop.WeaponArray[0].getCost);
+
+                    lblAttackNotif.Text = $"You got a {VideoJames.Map.shop.WeaponArray[0]}!";
+
+                    DrawMap();
+                }
+
+                // cant buy
+                else
+                {
+
+                    lblAttackNotif.Visible = true;
+                    lblAttackNotif.Text = $"Not enough money for {VideoJames.Map.shop.WeaponArray[0]}!";
+
+                    DrawMap();
+
+                }
+            }
+        }
+
+        private void btnShop1_Click(object sender, EventArgs e)
+        {
+            if (VideoJames.Map.shop.CanBuy(VideoJames.Map.shop.WeaponArray[0].getCost))
+            {
+                VideoJames.Map.shop.Buy(VideoJames.Map.shop.WeaponArray[0].getCost);
+
+                lblAttackNotif.Text = $"You got a {VideoJames.Map.shop.WeaponArray[0]}!";
+
+                DrawMap();
+            }
+
+            // cant buy
+            else
+            {
+
+                lblAttackNotif.Visible = true;
+                lblAttackNotif.Text = $"Not enough money for {VideoJames.Map.shop.WeaponArray[0]}!";
+
+                DrawMap();
+
+            }
         }
     }
 }

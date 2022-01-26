@@ -8,24 +8,121 @@ namespace Hein_Kroese_GADE6112_POE
 {
     class Shop
     {
-
-        public string[] weaponarray = new string[3];
-        public Character Buyer;
-        public Character buyer { set { value = Buyer; } get { return Buyer; } }
-        public Shop()
+        public enum ShopWeapons
         {
-            Buyer = new Hero(0,0);
+            Melee,
+            Ranged
+        }
+
+        public Weapon[] weaponarray = new Weapon[3];
+        public Character Buyer;
+
+        private readonly int amount = 5;
+        private readonly int weapontypes = Enum.GetNames(typeof(ShopWeapons)).Length;
+
+        public Weapon[] WeaponArray { set { weaponarray = value; } get { return weaponarray; } }
+
+        public Shop(Character Player)
+        {
+            Buyer = Player;
+
+            for (int i = 0; i < weaponarray.Length; i++)
+            {
+                weaponarray[i] = RandomWeapon();
+
+                while (i != 0 && weaponarray[i] == weaponarray[i - 1])
+                {
+                    weaponarray[i] = RandomWeapon();
+                }
+
+            }
+        }
+
+        public Weapon RandomWeapon()
+        {
+            Item weapon;
+
+            switch (RandomWeaponType())
+            {
+                case ShopWeapons.Melee:
+                    switch (random.Next(0, Enum.GetNames(typeof(MeleeWeapon)).Length))
+                    {
+                        case (int)MeleeWeapon.MeleeTypes.Dagger: // 0           //casting
+                            weapon = new MeleeWeapon(MeleeWeapon.MeleeTypes.Dagger);
+                            break;
+
+                        case (int)MeleeWeapon.MeleeTypes.Longsword: // 1
+                            weapon = new MeleeWeapon(MeleeWeapon.MeleeTypes.Longsword);
+                            break;
+
+                        default:
+                            weapon = new MeleeWeapon(MeleeWeapon.MeleeTypes.Dagger);
+                            break;
+                    }
+                    break;
+                case ShopWeapons.Ranged:
+                    switch (random.Next(0, Enum.GetNames(typeof(RangedWeapon)).Length))
+                    {
+                        case (int)RangedWeapon.RangedTypes.Rifle:
+                            weapon = new RangedWeapon(RangedWeapon.RangedTypes.Rifle);
+                            break;
+
+                        case (int)RangedWeapon.RangedTypes.Longbow:
+                            weapon = new RangedWeapon(RangedWeapon.RangedTypes.Longbow);
+                            break;
+
+                        default:
+                            weapon = new RangedWeapon(RangedWeapon.RangedTypes.Rifle);
+                            break;
+                    }
+                    break;
+                default:
+                    return null;
+
+            }
+
+            return (Weapon)weapon;
+        }
+
+        public ShopWeapons RandomWeaponType()
+        {
+            random = new Random();
+            int num = random.Next(0, weapontypes);
+
+            if (num == (int)ShopWeapons.Melee)
+            {
+                return ShopWeapons.Melee;
+            }
+            else if (num == (int)ShopWeapons.Ranged)
+            {
+                return ShopWeapons.Ranged;
+            }
+            else
+            {
+                return default;
+            }
         }
 
         Random random = new Random();
         public void Buy(int num)
         {
-            num -= 5;
+            Buyer.getGoldAmount-= num;
+
+            for (int i = 0; i < weaponarray.Length; i++)
+            {
+                if (num == weaponarray[i].getCost)
+                {
+                    Buyer.Pickup(weaponarray[i]);
+                    Buyer.Equip(weaponarray[i]);
+                    weaponarray[i] = RandomWeapon();
+                    break;
+                }
+            }
         }
 
         public bool CanBuy(int num)
         {
-            if (Buyer.getGoldAmount < num)
+            if (Buyer.getGoldAmount >= num)
             {
                 return true;
             }
@@ -40,50 +137,23 @@ namespace Hein_Kroese_GADE6112_POE
             return "Buy Weapon type " + num.ToString();
         }
 
-        public void FillShop()
+        public string FillShop(int num)
         {
-            for (int i = 0; i < weaponarray.Length; i++)
+            switch (num)
             {
-                if (random.Next(0, 5) == 1)
-                {
-                 weaponarray[i] = "Dagger";
-                }
-                else if (random.Next(0, 5) == 2)
-                {
-                    weaponarray[i] = "LongSword";
-                }
-                else if (random.Next(0, 5) == 3)
-                {
-                    weaponarray[i] = "Rifle";
-                }
-                else if (random.Next(0, 5) == 4)
-                {
-                    weaponarray[i] = "LongBow";
-                }
-            }
-
-           
-        }
-
-        public Weapon RandomWeapon()
-        {
-            
-            int type = random.Next(0, 4);
-
-            switch (type)
-            {
-                case 0:
-                    return new MeleeWeapon(MeleeWeapon.MeleeTypes.Dagger,0,0);
-                case 1:
-                    return new MeleeWeapon(MeleeWeapon.MeleeTypes.Longsword,0,0);
-                case 2:
-                    return new RangedWeapon(RangedWeapon.RangedTypes.Rifle);
                 case 3:
-                    return new RangedWeapon(RangedWeapon.RangedTypes.Longbow);
+                    return $"Buy Dagger for {num}$";
+                case 4:
+                    return $"Buy Longsword for {num}$";
+                case 5:
+                    return $"Buy Longbow for {num}$";
+                case 6:
+                    return $"Buy Rifle for {num}$";
                 default:
-                    return null;
+                    return $"";
             }
         }
+
     } 
 
 }     
